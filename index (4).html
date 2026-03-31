@@ -1,0 +1,1952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChemCrush — Grade 10 Chemistry Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060d1f;
+  --surface: #0d1a2e;
+  --card: #112240;
+  --card2: #162d4c;
+  --border: #1e3a5f;
+  --text: #e2ecf8;
+  --muted: #7a9abf;
+  --cyan: #00c8f8;
+  --orange: #ff8c42;
+  --green: #00e676;
+  --red: #ff5252;
+  --purple: #b388ff;
+  --yellow: #ffd740;
+  --pink: #ff80ab;
+  --teal: #00e5cc;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:'Rajdhani',sans-serif;font-weight:700}
+code,formula{font-family:'Fira Code',monospace;background:rgba(0,200,248,0.1);color:var(--cyan);padding:2px 6px;border-radius:4px;font-size:0.88em}
+
+/* NAV */
+nav{background:#070f20;border-bottom:2px solid var(--border);position:sticky;top:0;z-index:999;display:flex;align-items:center;gap:4px;padding:0 12px;overflow-x:auto;flex-wrap:nowrap}
+.logo{font-family:'Rajdhani',sans-serif;font-size:1.4rem;font-weight:700;color:var(--cyan);white-space:nowrap;padding:12px 16px 12px 4px;border-right:1px solid var(--border);margin-right:4px;flex-shrink:0}
+.logo span{color:var(--orange)}
+.nav-btn{background:none;border:none;color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:0.95rem;font-weight:600;padding:10px 12px;cursor:pointer;border-radius:6px;transition:all 0.2s;white-space:nowrap;flex-shrink:0;letter-spacing:0.5px}
+.nav-btn:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+.nav-btn.active{color:var(--cyan);background:rgba(0,200,248,0.1);border-bottom:2px solid var(--cyan)}
+
+/* PAGES */
+.page{display:none;padding:24px 20px;max-width:1000px;margin:0 auto}
+.page.active{display:block}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.card-title{font-size:1.25rem;color:var(--cyan);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-title .icon{font-size:1.4rem}
+.info-box{background:rgba(0,200,248,0.07);border:1px solid rgba(0,200,248,0.25);border-radius:8px;padding:14px;margin:10px 0}
+.warn-box{background:rgba(255,140,66,0.07);border:1px solid rgba(255,140,66,0.3);border-radius:8px;padding:14px;margin:10px 0}
+.success-box{background:rgba(0,230,118,0.07);border:1px solid rgba(0,230,118,0.3);border-radius:8px;padding:14px;margin:10px 0}
+.formula-box{background:rgba(0,200,248,0.07);border:1px solid rgba(0,200,248,0.2);border-radius:8px;padding:12px;font-family:'Fira Code',monospace;font-size:1rem;margin:10px 0;color:var(--cyan)}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.8rem;font-weight:600;margin:2px}
+.tag-cyan{background:rgba(0,200,248,0.15);color:var(--cyan);border:1px solid rgba(0,200,248,0.3)}
+.tag-orange{background:rgba(255,140,66,0.15);color:var(--orange);border:1px solid rgba(255,140,66,0.3)}
+.tag-green{background:rgba(0,230,118,0.15);color:var(--green);border:1px solid rgba(0,230,118,0.3)}
+.tag-purple{background:rgba(179,136,255,0.15);color:var(--purple);border:1px solid rgba(179,136,255,0.3)}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:650px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:0.9rem}
+th{background:rgba(0,200,248,0.12);color:var(--cyan);padding:10px;text-align:left;font-family:'Rajdhani',sans-serif;font-size:1rem;border-bottom:1px solid var(--border)}
+td{padding:9px 10px;border-bottom:1px solid rgba(30,58,95,0.5)}
+tr:hover td{background:rgba(255,255,255,0.02)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border:none;border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;cursor:pointer;transition:all 0.2s;letter-spacing:0.5px}
+.btn-cyan{background:var(--cyan);color:#060d1f}
+.btn-cyan:hover{background:#00aad4;transform:translateY(-1px)}
+.btn-orange{background:var(--orange);color:#060d1f}
+.btn-orange:hover{background:#e07830}
+.btn-green{background:var(--green);color:#060d1f}
+.btn-green:hover{background:#00c060}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-sm{padding:7px 14px;font-size:0.9rem}
+.btn-lg{padding:14px 28px;font-size:1.1rem}
+
+/* GAMES GRID */
+.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+.game-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;cursor:pointer;transition:all 0.2s;text-align:center}
+.game-card:hover{border-color:var(--cyan);transform:translateY(-3px);background:var(--card2)}
+.game-card.active{border-color:var(--cyan);background:rgba(0,200,248,0.08)}
+.game-icon{font-size:2.4rem;margin-bottom:8px}
+.game-title{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.game-desc{font-size:0.78rem;color:var(--muted)}
+
+/* GAME AREA */
+#game-area{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;min-height:400px}
+.game-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+.game-title-main{font-family:'Rajdhani',sans-serif;font-size:1.5rem;color:var(--cyan)}
+.score-display{background:rgba(0,200,248,0.1);border:1px solid rgba(0,200,248,0.3);border-radius:8px;padding:8px 16px;font-family:'Rajdhani',sans-serif;font-size:1.1rem;color:var(--cyan)}
+
+/* QUESTION */
+.question-box{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:18px;text-align:center}
+.question-text{font-size:1.1rem;margin-bottom:8px;color:var(--text)}
+.question-formula{font-family:'Fira Code',monospace;font-size:1.8rem;color:var(--cyan);margin:10px 0}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.option-btn{background:var(--card2);border:2px solid var(--border);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--text)}
+.option-btn:hover{border-color:var(--cyan);background:rgba(0,200,248,0.07)}
+.option-btn.correct{border-color:var(--green);background:rgba(0,230,118,0.12);color:var(--green)}
+.option-btn.wrong{border-color:var(--red);background:rgba(255,82,82,0.12);color:var(--red)}
+.option-btn.reveal{border-color:var(--green);background:rgba(0,230,118,0.08)}
+.option-btn:disabled{cursor:default}
+.feedback{background:var(--card2);border-radius:10px;padding:14px;margin:10px 0;font-size:0.95rem;display:none}
+.feedback.show{display:block}
+.feedback.correct-fb{border:1px solid var(--green);color:var(--green)}
+.feedback.wrong-fb{border:1px solid var(--red);color:var(--text)}
+
+/* FLASHCARD */
+.flashcard-container{perspective:1000px;width:340px;height:200px;margin:20px auto;cursor:pointer}
+.flashcard{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.5s}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flashcard-face{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:20px;text-align:center}
+.flashcard-front{background:var(--card2);border:2px solid var(--cyan)}
+.flashcard-back{background:rgba(0,200,248,0.08);border:2px solid var(--orange);transform:rotateY(180deg)}
+.flashcard-formula{font-family:'Fira Code',monospace;font-size:2rem;color:var(--cyan)}
+.flashcard-name{font-family:'Rajdhani',sans-serif;font-size:1.5rem;color:var(--orange)}
+.flashcard-charge{font-size:1.1rem;color:var(--muted)}
+
+/* pH SCALE */
+.ph-scale{position:relative;height:60px;border-radius:30px;background:linear-gradient(to right,#ff0000,#ff6600,#ffcc00,#66cc00,#00aa00,#0066ff,#6600cc,#cc00cc);margin:20px 0}
+.ph-numbers{display:flex;justify-content:space-between;padding:0 5px;font-family:'Fira Code',monospace;font-size:0.85rem;color:var(--muted)}
+.ph-marker{position:absolute;top:-10px;transform:translateX(-50%);cursor:pointer;font-size:1.5rem}
+.ph-drop-zone{position:absolute;top:0;height:60px;width:30px;transform:translateX(-50%);cursor:pointer}
+
+/* BALANCER */
+.equation-display{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0;font-size:1.1rem}
+.coeff-input{width:52px;height:44px;background:var(--card2);border:2px solid var(--border);border-radius:8px;color:var(--cyan);font-family:'Fira Code',monospace;font-size:1.3rem;text-align:center;outline:none}
+.coeff-input:focus{border-color:var(--cyan)}
+.eq-part{display:flex;align-items:center;gap:6px}
+.eq-formula{font-family:'Fira Code',monospace;font-size:1.3rem;color:var(--text)}
+.eq-arrow{color:var(--orange);font-size:1.4rem}
+.eq-plus{color:var(--muted);font-size:1.2rem}
+
+/* BR DIAGRAM */
+.atom-diagram{position:relative;width:280px;height:280px;margin:0 auto}
+.nucleus{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#ff8c42,#c94800);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;z-index:10}
+.orbital-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:2px dashed rgba(100,150,255,0.3);border-radius:50%}
+.electron-dot{position:absolute;width:14px;height:14px;background:var(--cyan);border-radius:50%;transform:translate(-50%,-50%)}
+
+/* SORTER */
+.sorter-item{background:var(--card2);border:2px solid var(--border);border-radius:10px;padding:14px 20px;margin:8px 0;text-align:center;font-size:1rem;transition:all 0.2s}
+.drop-zone{background:rgba(0,0,0,0.2);border:2px dashed var(--border);border-radius:12px;padding:16px;min-height:120px;margin:10px 0;transition:all 0.2s}
+.drop-zone.hover{border-color:var(--cyan)}
+
+/* HIERARCHY */
+.hier-node{border-radius:10px;padding:10px 16px;text-align:center;cursor:pointer;transition:all 0.2s;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:1rem}
+.hier-node:hover{transform:scale(1.03)}
+.hier-line{border-left:2px dashed var(--border);margin-left:50%}
+
+/* PROGRESS */
+.progress-bar{height:8px;background:var(--card2);border-radius:4px;margin:12px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(to right,var(--cyan),var(--teal));border-radius:4px;transition:width 0.3s}
+
+/* INPUT GAME */
+.text-input{background:var(--card2);border:2px solid var(--border);border-radius:10px;padding:12px 16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:1rem;width:100%;outline:none;margin-bottom:10px}
+.text-input:focus{border-color:var(--cyan)}
+
+/* BADGE */
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;font-family:'Rajdhani',sans-serif}
+.badge-acid{background:rgba(255,82,82,0.2);color:var(--red);border:1px solid var(--red)}
+.badge-base{background:rgba(0,100,255,0.2);color:#66aaff;border:1px solid #66aaff}
+.badge-neutral{background:rgba(0,230,118,0.2);color:var(--green);border:1px solid var(--green)}
+
+/* HOME PAGE HERO */
+.hero{text-align:center;padding:40px 20px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,200,248,0.08),transparent 70%);pointer-events:none}
+.hero h1{font-size:3rem;background:linear-gradient(135deg,var(--cyan),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto 24px}
+.checklist{text-align:left;max-width:700px;margin:20px auto 0}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:8px;border-radius:8px;margin:4px 0;transition:all 0.2s}
+.check-item:hover{background:rgba(0,200,248,0.05)}
+.check-icon{width:22px;height:22px;border:2px solid var(--border);border-radius:6px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;font-size:0.85rem}
+.check-item.done .check-icon{background:var(--green);border-color:var(--green);color:#060d1f}
+
+/* SECTION HEADER */
+.section-header{margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.section-header h2{font-size:2rem;color:var(--text)}
+.section-header p{color:var(--muted);font-size:1rem;margin-top:4px}
+
+/* QUICK FACTS */
+.quick-facts{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.quick-fact{background:rgba(0,200,248,0.07);border:1px solid rgba(0,200,248,0.2);border-radius:8px;padding:10px 14px;font-size:0.9rem;flex:1;min-width:150px}
+.quick-fact strong{color:var(--cyan);display:block;font-family:'Rajdhani',sans-serif;font-size:1rem}
+
+/* STEP LIST */
+.steps{counter-reset:step;list-style:none}
+.steps li{display:flex;gap:12px;margin:10px 0;align-items:flex-start;counter-increment:step}
+.steps li::before{content:counter(step);background:var(--cyan);color:#060d1f;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;flex-shrink:0;font-size:0.9rem}
+
+/* NAMING FLOW */
+.naming-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;padding:16px;background:var(--card2);border-radius:10px;margin:10px 0}
+.flow-box{background:var(--card);border:2px solid var(--border);border-radius:8px;padding:8px 14px;text-align:center;font-family:'Fira Code',monospace;font-size:0.9rem}
+.flow-box.cyan{border-color:var(--cyan);color:var(--cyan)}
+.flow-box.orange{border-color:var(--orange);color:var(--orange)}
+.flow-box.green{border-color:var(--green);color:var(--green)}
+.flow-arrow{color:var(--muted);font-size:1.2rem}
+
+/* SPLIT CARD */
+.split-card{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:12px 0}
+.split-left{padding:16px;background:rgba(0,200,248,0.05)}
+.split-right{padding:16px;background:rgba(255,140,66,0.05);border-left:1px solid var(--border)}
+.split-title{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;margin-bottom:8px}
+
+/* REACTION TYPE CARDS */
+.reaction-type-card{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px;margin:8px 0}
+.reaction-type-card h4{font-family:'Rajdhani',sans-serif;font-size:1.1rem;margin-bottom:6px}
+.general-formula{font-family:'Fira Code',monospace;font-size:1rem;padding:8px 12px;background:rgba(0,0,0,0.3);border-radius:6px;margin:6px 0}
+
+/* PH SUBSTANCE LIST */
+.ph-substance{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;margin:4px 0}
+.ph-num{font-family:'Fira Code',monospace;font-size:1.1rem;width:28px;text-align:center;font-weight:700}
+.ph-bar{height:18px;border-radius:4px;min-width:20px}
+.ph-label{font-size:0.9rem}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+  .hero h1{font-size:2rem}
+  .options-grid{grid-template-columns:1fr}
+  .split-card{grid-template-columns:1fr}
+  .split-right{border-left:none;border-top:1px solid var(--border)}
+}
+
+/* ANIMATION */
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.page.active{animation:fadeIn 0.3s ease}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.pulsing{animation:pulse 1.5s infinite}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+.pop{animation:pop 0.3s ease}
+
+/* MISC */
+ul.bullet{list-style:none;padding:0}
+ul.bullet li{padding:5px 0 5px 20px;position:relative;color:var(--text);font-size:0.95rem}
+ul.bullet li::before{content:'→';position:absolute;left:0;color:var(--cyan)}
+.text-cyan{color:var(--cyan)}
+.text-orange{color:var(--orange)}
+.text-green{color:var(--green)}
+.text-red{color:var(--red)}
+.text-purple{color:var(--purple)}
+.text-muted{color:var(--muted)}
+.mt{margin-top:16px}
+.mb{margin-bottom:16px}
+.center{text-align:center}
+.bold{font-weight:600}
+hr.divider{border:none;border-top:1px solid var(--border);margin:20px 0}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Chem<span>Crush</span> ⚗️</div>
+  <button class="nav-btn active" onclick="showPage('home')">🏠 Home</button>
+  <button class="nav-btn" onclick="showPage('matter')">🔬 Matter</button>
+  <button class="nav-btn" onclick="showPage('atoms')">⚛️ Atoms</button>
+  <button class="nav-btn" onclick="showPage('bonding')">🔗 Bonding</button>
+  <button class="nav-btn" onclick="showPage('naming')">📝 Naming</button>
+  <button class="nav-btn" onclick="showPage('reactions')">⚗️ Reactions</button>
+  <button class="nav-btn" onclick="showPage('ph')">🧪 pH & Acids</button>
+  <button class="nav-btn" onclick="showPage('games')">🎮 All Games</button>
+</nav>
+
+<!-- ═══════════════════ HOME ═══════════════════ -->
+<section id="home" class="page active">
+  <div class="hero">
+    <h1>ChemCrush</h1>
+    <p>Your complete Grade 10 Chemistry exam prep. Zero prior knowledge needed. Learn everything, play 16 games, ace the test.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-cyan btn-lg" onclick="showPage('games')">🎮 Jump to Games</button>
+      <button class="btn btn-ghost btn-lg" onclick="showPage('matter')">📚 Start Learning</button>
+    </div>
+  </div>
+  <div class="checklist">
+    <div class="card">
+      <div class="card-title"><span class="icon">📋</span> Test Checklist — Check Off What You Know</div>
+      <div id="checklist-items"></div>
+    </div>
+    <div class="grid-2 mt">
+      <div class="card" style="border-color:rgba(0,200,248,0.3)">
+        <div class="card-title"><span class="icon">💡</span> How To Use This Site</div>
+        <ul class="bullet">
+          <li>Read each <strong class="text-cyan">lesson section</strong> using the nav above</li>
+          <li>Play <strong class="text-orange">games</strong> to practice what you learned</li>
+          <li>Hit the <strong class="text-green">🎮 All Games</strong> tab to access all 16 games</li>
+          <li>Check off topics you feel confident about on this list</li>
+        </ul>
+      </div>
+      <div class="card" style="border-color:rgba(255,140,66,0.3)">
+        <div class="card-title"><span class="icon">🎮</span> 16 Games Available</div>
+        <ul class="bullet">
+          <li>Physical vs Chemical Change Sorter</li>
+          <li>Matter Classification Quiz</li>
+          <li>Atomic Structure Quiz</li>
+          <li>BR Diagram Builder</li>
+          <li>Ion Formation Challenge</li>
+          <li>Naming Ionic Compounds</li>
+          <li>+ 10 more games!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MATTER ═══════════════════ -->
+<section id="matter" class="page">
+  <div class="section-header">
+    <h2>🔬 Matter, Properties & Changes</h2>
+    <p>Learn what matter is, how to classify it, and how to tell physical from chemical changes</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔑</span> Physical vs Chemical Properties</div>
+    <div class="split-card">
+      <div class="split-left">
+        <div class="split-title text-cyan">Physical Property</div>
+        <p style="font-size:0.9rem">Can be observed <strong>without changing the substance's composition</strong>.</p>
+        <ul class="bullet" style="margin-top:8px;font-size:0.88rem">
+          <li><strong>Qualitative</strong> — uses senses (color, smell, texture, lustre)</li>
+          <li><strong>Quantitative</strong> — has a number + unit (density, melting point, mass)</li>
+        </ul>
+        <div class="info-box" style="margin-top:10px;font-size:0.85rem">
+          <strong>Examples:</strong> Yellow color, shiny, 32°C, solid, brittle, viscous, ductile, malleable
+        </div>
+      </div>
+      <div class="split-right">
+        <div class="split-title text-orange">Chemical Property</div>
+        <p style="font-size:0.9rem">Describes a substance's ability to <strong>change into a different substance</strong>.</p>
+        <ul class="bullet" style="margin-top:8px;font-size:0.88rem">
+          <li>Flammability (can it burn?)</li>
+          <li>Reactivity with acids</li>
+          <li>Ability to rust or corrode</li>
+        </ul>
+        <div class="warn-box" style="margin-top:10px;font-size:0.85rem">
+          <strong>Key:</strong> You have to actually change the substance to test a chemical property.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">⚡</span> Physical vs Chemical CHANGES</div>
+    <div class="split-card">
+      <div class="split-left">
+        <div class="split-title text-cyan">Physical Change</div>
+        <p style="font-size:0.9rem">The <strong>form changes but the substance stays the same</strong>. Usually reversible.</p>
+        <div class="info-box" style="margin-top:8px;font-size:0.85rem">
+          <strong>State changes:</strong> solid → liquid → gas → back<br>
+          Examples: melting ice, boiling water, cutting paper, stretching rubber, dissolving salt
+        </div>
+      </div>
+      <div class="split-right">
+        <div class="split-title text-orange">Chemical Change</div>
+        <p style="font-size:0.9rem">A <strong>new substance is formed</strong>. Usually NOT reversible.</p>
+        <div class="warn-box" style="margin-top:8px;font-size:0.85rem">
+          <strong>Signs (GFLECT):</strong><br>
+          🔵 <strong>G</strong>as produced (bubbles without heat)<br>
+          🔵 <strong>F</strong>lame / light emitted<br>
+          🔵 <strong>L</strong>ight produced<br>
+          🔵 <strong>E</strong>nergy released/absorbed (temp change)<br>
+          🔵 <strong>C</strong>olor change<br>
+          🔵 <strong>T</strong>emperature change<br>
+          🔵 Precipitate forms (solid from a liquid)<br>
+          🔵 New odour
+        </div>
+      </div>
+    </div>
+    <div class="info-box mt" style="font-size:0.9rem">
+      <strong class="text-cyan">Memory trick:</strong> If you can "undo" it easily → Physical. If something NEW was made → Chemical.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🌳</span> The Hierarchy (Classification) of Matter</div>
+    <div class="info-box">
+      All matter is classified into two big categories: <strong class="text-cyan">Pure Substances</strong> and <strong class="text-orange">Mixtures</strong>.
+    </div>
+    <table>
+      <tr><th>Category</th><th>Type</th><th>Definition</th><th>Examples</th></tr>
+      <tr><td class="text-cyan" rowspan="2">Pure Substance</td><td><strong>Element</strong></td><td>Cannot be broken down further. Made of one type of atom.</td><td>Gold (Au), Oxygen (O₂), Iron (Fe)</td></tr>
+      <tr><td><strong>Compound</strong></td><td>Two or more elements chemically combined in a fixed ratio.</td><td>Water (H₂O), Salt (NaCl), CO₂</td></tr>
+      <tr><td class="text-orange" rowspan="2">Mixture</td><td><strong>Homogeneous</strong></td><td>Uniform throughout. Looks the same everywhere (solution).</td><td>Salt water, air, vinegar, brass</td></tr>
+      <tr><td><strong>Heterogeneous</strong></td><td>Not uniform. You can see the different parts.</td><td>Soil, salad, sand & rocks</td></tr>
+    </table>
+    <div class="warn-box" style="font-size:0.9rem;margin-top:10px">
+      <strong>Tip:</strong> Pure Substance = single composition everywhere. Mixture = can be physically separated.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎮</span> Practice Games — Matter</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-cyan" onclick="showPage('games');launchGame('sorter')">🎯 Play Change Sorter</button>
+      <button class="btn btn-orange" onclick="showPage('games');launchGame('classification')">🌳 Matter Classification</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ATOMS ═══════════════════ -->
+<section id="atoms" class="page">
+  <div class="section-header">
+    <h2>⚛️ Atoms & The Periodic Table</h2>
+    <p>Atomic structure, periodic trends, Bohr-Rutherford diagrams, and the octet rule</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔵</span> Structure of the Atom</div>
+    <div class="quick-facts">
+      <div class="quick-fact"><strong>Protons (p⁺)</strong>Positive charge. In the nucleus. # = atomic number.</div>
+      <div class="quick-fact"><strong>Neutrons (n⁰)</strong>No charge. In the nucleus. # = mass # − atomic #.</div>
+      <div class="quick-fact"><strong>Electrons (e⁻)</strong>Negative charge. Orbit the nucleus. In shells.</div>
+    </div>
+    <div class="formula-box">
+      Atomic Number = # of protons = # of electrons (in neutral atom)<br>
+      Neutrons = Mass Number − Atomic Number<br>
+      Mass Number ≈ protons + neutrons
+    </div>
+    <div class="info-box">
+      <strong class="text-cyan">Example — Sodium (Na):</strong> Atomic # = 11, Mass # ≈ 23<br>
+      Protons = 11 | Neutrons = 23 − 11 = 12 | Electrons = 11
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> Periodic Table Layout</div>
+    <div class="grid-2">
+      <div>
+        <p class="mb" style="font-size:0.95rem"><strong class="text-cyan">Metals (left side)</strong> — Shiny, solid, conduct electricity, malleable, ductile</p>
+        <p class="mb" style="font-size:0.95rem"><strong class="text-orange">Non-metals (right side)</strong> — Highly variable, often gaseous, poor conductors</p>
+        <p style="font-size:0.95rem"><strong class="text-purple">Metalloids (staircase)</strong> — Have properties of both. B→At staircase.</p>
+      </div>
+      <div>
+        <div class="info-box" style="font-size:0.88rem">
+          <strong>4 KEY GROUPS:</strong><br>
+          <span class="tag tag-cyan">Group 1</span> Alkali Metals — soft, shiny, VERY reactive<br>
+          <span class="tag tag-cyan">Group 2</span> Alkaline Earth — harder, less reactive<br>
+          <span class="tag tag-orange">Group 17</span> Halogens — VERY reactive non-metals<br>
+          <span class="tag tag-purple">Group 18</span> Noble Gases — stable, rarely react
+        </div>
+      </div>
+    </div>
+    <div class="formula-box" style="margin-top:12px">
+      Periods = ROWS (going across adds a new electron shell)<br>
+      Groups/Families = COLUMNS (same # valence electrons = similar properties)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">⭕</span> Bohr-Rutherford Diagrams</div>
+    <p style="font-size:0.95rem;margin-bottom:12px">A diagram showing the nucleus (p⁺ and n⁰) surrounded by electron shells (orbitals).</p>
+    <div class="warn-box">
+      <strong>Shell Capacity Rules:</strong><br>
+      🔵 Shell 1 (period 1): max <strong>2 electrons</strong><br>
+      🔵 Shell 2 (period 2): max <strong>8 electrons</strong><br>
+      🔵 Shell 3 (period 3): max <strong>8 electrons</strong><br>
+      🔵 Fill shells from inside out!
+    </div>
+    <table style="margin-top:12px">
+      <tr><th>Element</th><th>Atomic #</th><th>Electron Config</th><th>Valence e⁻</th></tr>
+      <tr><td>Hydrogen (H)</td><td>1</td><td>1</td><td>1</td></tr>
+      <tr><td>Helium (He)</td><td>2</td><td>2</td><td>2</td></tr>
+      <tr><td>Carbon (C)</td><td>6</td><td>2, 4</td><td>4</td></tr>
+      <tr><td>Oxygen (O)</td><td>8</td><td>2, 6</td><td>6</td></tr>
+      <tr><td>Sodium (Na)</td><td>11</td><td>2, 8, 1</td><td>1</td></tr>
+      <tr><td>Chlorine (Cl)</td><td>17</td><td>2, 8, 7</td><td>7</td></tr>
+      <tr><td>Calcium (Ca)</td><td>20</td><td>2, 8, 8, 2</td><td>2</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎯</span> The Octet Rule & Reactivity</div>
+    <div class="info-box">
+      <strong class="text-cyan">Octet Rule:</strong> Atoms want 8 electrons in their outer shell (like noble gases). They react to achieve this stability.
+    </div>
+    <div class="quick-facts" style="margin-top:12px">
+      <div class="quick-fact"><strong>Valence electrons</strong>Electrons in the outermost shell. These determine how atoms react.</div>
+      <div class="quick-fact"><strong>Noble gases</strong>Already have 8 (or 2) — stable! Don't react easily.</div>
+      <div class="quick-fact"><strong>Group 1 metals</strong>1 valence electron — easily give it away to get to 8.</div>
+      <div class="quick-fact"><strong>Group 17 halogens</strong>7 valence electrons — need 1 more! Very reactive.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎮</span> Practice Games — Atoms</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-cyan" onclick="showPage('games');launchGame('atomicquiz')">⚛️ Atomic Structure Quiz</button>
+      <button class="btn btn-orange" onclick="showPage('games');launchGame('brbuilder')">⭕ BR Diagram Builder</button>
+      <button class="btn btn-ghost" onclick="showPage('games');launchGame('trends')">📊 Periodic Trends Quiz</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ BONDING ═══════════════════ -->
+<section id="bonding" class="page">
+  <div class="section-header">
+    <h2>🔗 Chemical Bonding</h2>
+    <p>Ionic bonds vs molecular (covalent) bonds — and how ions form</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">⚡</span> What Are Ions?</div>
+    <div class="split-card">
+      <div class="split-left">
+        <div class="split-title text-cyan">Cation (+)</div>
+        <p style="font-size:0.9rem">Atom that <strong>LOST</strong> electrons → positive charge</p>
+        <div class="info-box" style="font-size:0.85rem;margin-top:8px">
+          Metals lose electrons.<br>
+          Na → Na⁺ + e⁻<br>
+          Ca → Ca²⁺ + 2e⁻
+        </div>
+      </div>
+      <div class="split-right">
+        <div class="split-title text-orange">Anion (−)</div>
+        <p style="font-size:0.9rem">Atom that <strong>GAINED</strong> electrons → negative charge</p>
+        <div class="warn-box" style="font-size:0.85rem;margin-top:8px">
+          Non-metals gain electrons.<br>
+          Cl + e⁻ → Cl⁻<br>
+          O + 2e⁻ → O²⁻
+        </div>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:12px">
+      <strong class="text-cyan">How to know if atom gains or loses?</strong> 
+      Nature is efficient — an atom does whichever takes <em>fewer</em> steps to fill/empty its outer shell.<br>
+      <strong>Na</strong> has 1 valence e⁻ → loses 1 (easier than gaining 7) → Na⁺<br>
+      <strong>Cl</strong> has 7 valence e⁻ → gains 1 (easier than losing 7) → Cl⁻
+    </div>
+    <div class="warn-box" style="margin-top:10px;font-size:0.9rem">
+      <strong>Naming ions:</strong> Keep the first part of the element name, add <strong>-ide</strong> for anions.<br>
+      Chlorine → chloride | Oxygen → oxide | Sulfur → sulfide | Iodine → iodide
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span> Ionic vs Molecular Bonds</div>
+    <table>
+      <tr><th></th><th class="text-cyan">Ionic Bond</th><th class="text-orange">Molecular (Covalent) Bond</th></tr>
+      <tr><td><strong>Between</strong></td><td>Metal + Non-metal</td><td>Non-metal + Non-metal</td></tr>
+      <tr><td><strong>Electron action</strong></td><td>TRANSFER (one atom takes)</td><td>SHARING (both atoms share)</td></tr>
+      <tr><td><strong>Result</strong></td><td>Ions formed, ionic compound</td><td>Molecule formed</td></tr>
+      <tr><td><strong>State</strong></td><td>Usually solid crystal</td><td>Often gas, liquid, or soft solid</td></tr>
+      <tr><td><strong>Melting point</strong></td><td>High</td><td>Often low</td></tr>
+      <tr><td><strong>Conducts electricity?</strong></td><td>Yes, when dissolved</td><td>No (non-electrolyte)</td></tr>
+      <tr><td><strong>Examples</strong></td><td>NaCl, MgO, CaF₂</td><td>H₂O, CO₂, CH₄, NH₃</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔵</span> Diatomic Molecules</div>
+    <p style="margin-bottom:10px;font-size:0.95rem">7 elements that always exist as pairs (bonded to themselves):</p>
+    <div class="formula-box">
+      H₂ · N₂ · O₂ · F₂ · Cl₂ · Br₂ · I₂
+    </div>
+    <div class="info-box" style="margin-top:10px">
+      <strong class="text-cyan">Memory trick — "Have No Fear Of Cold Brutal Ice"</strong><br>
+      H₂, N₂, F₂, O₂, Cl₂, Br₂, I₂
+    </div>
+    <p style="font-size:0.9rem;margin-top:10px">These are covalent because they are two NON-METALS bonding together. They <strong>share</strong> electrons.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎮</span> Practice Games — Bonding</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-cyan" onclick="showPage('games');launchGame('ionicvsmolecular')">⚡ Ionic vs Molecular Sort</button>
+      <button class="btn btn-orange" onclick="showPage('games');launchGame('ionformation')">🔋 Ion Formation Challenge</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ NAMING ═══════════════════ -->
+<section id="naming" class="page">
+  <div class="section-header">
+    <h2>📝 Naming & Formula Writing</h2>
+    <p>ALL naming systems: ionic, polyatomic, molecular, acids, and bases</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">1️⃣</span> Binary Ionic Compounds (Metal + Non-metal)</div>
+    <ol class="steps">
+      <li>Write the metal name (unchanged from the periodic table)</li>
+      <li>Write the non-metal with <strong>-ide</strong> ending</li>
+    </ol>
+    <table style="margin-top:12px">
+      <tr><th>Formula</th><th>Name</th></tr>
+      <tr><td><code>NaCl</code></td><td>Sodium chloride</td></tr>
+      <tr><td><code>MgO</code></td><td>Magnesium oxide</td></tr>
+      <tr><td><code>CaBr₂</code></td><td>Calcium bromide</td></tr>
+      <tr><td><code>Al₂O₃</code></td><td>Aluminum oxide</td></tr>
+      <tr><td><code>K₂S</code></td><td>Potassium sulfide</td></tr>
+    </table>
+    <div class="warn-box" style="margin-top:12px">
+      <strong>Writing formulas — Criss-Cross Method:</strong><br>
+      Write symbols and their charges → cross the charges over as subscripts → simplify.<br>
+      Ca²⁺ + Cl¹⁻ → Ca<sub>1</sub>Cl<sub>2</sub> → <code>CaCl₂</code>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">2️⃣</span> Multivalent Ionic Compounds (Multiple Charges)</div>
+    <p style="font-size:0.95rem;margin-bottom:12px">Some metals can form more than one type of ion. You MUST include the charge using <strong>Roman numerals</strong>.</p>
+    <table>
+      <tr><th>Metal</th><th>Possible Ions</th><th>Example</th><th>Name</th></tr>
+      <tr><td>Iron (Fe)</td><td>2+, 3+</td><td>FeCl₂</td><td>Iron(II) chloride</td></tr>
+      <tr><td>Iron (Fe)</td><td>2+, 3+</td><td>FeCl₃</td><td>Iron(III) chloride</td></tr>
+      <tr><td>Copper (Cu)</td><td>1+, 2+</td><td>Cu₂O</td><td>Copper(I) oxide</td></tr>
+      <tr><td>Copper (Cu)</td><td>1+, 2+</td><td>CuO</td><td>Copper(II) oxide</td></tr>
+      <tr><td>Lead (Pb)</td><td>2+, 4+</td><td>PbO₂</td><td>Lead(IV) oxide</td></tr>
+      <tr><td>Tin (Sn)</td><td>2+, 4+</td><td>SnCl₄</td><td>Tin(IV) chloride</td></tr>
+      <tr><td>Mercury (Hg)</td><td>1+, 2+</td><td>HgCl₂</td><td>Mercury(II) chloride</td></tr>
+      <tr><td>Cobalt (Co)</td><td>2+, 3+</td><td>Co₂O₃</td><td>Cobalt(III) oxide</td></tr>
+      <tr><td>Manganese (Mn)</td><td>2+, 4+</td><td>MnO₂</td><td>Manganese(IV) oxide</td></tr>
+    </table>
+    <div class="info-box" style="margin-top:10px;font-size:0.9rem">
+      <strong class="text-cyan">How to find the charge:</strong> Work backwards from the formula using the criss-cross. If compound is Fe₂O₃, oxygen is −2 (×3 = −6), so iron must be +3 (×2 = +6). ✓
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">3️⃣</span> Polyatomic Ions — MUST KNOW THESE</div>
+    <div class="info-box" style="margin-bottom:12px">
+      A polyatomic ion = a charged group of atoms that acts as ONE ion. Keep the whole group together!
+    </div>
+    <table>
+      <tr><th>Name</th><th>Formula</th><th>Charge</th></tr>
+      <tr><td>Ammonium</td><td><code>NH₄⁺</code></td><td>+1</td></tr>
+      <tr><td>Hydroxide</td><td><code>OH⁻</code></td><td>−1</td></tr>
+      <tr><td>Nitrate</td><td><code>NO₃⁻</code></td><td>−1</td></tr>
+      <tr><td>Nitrite</td><td><code>NO₂⁻</code></td><td>−1</td></tr>
+      <tr><td>Carbonate</td><td><code>CO₃²⁻</code></td><td>−2</td></tr>
+      <tr><td>Bicarbonate (hydrogen carbonate)</td><td><code>HCO₃⁻</code></td><td>−1</td></tr>
+      <tr><td>Sulfate</td><td><code>SO₄²⁻</code></td><td>−2</td></tr>
+      <tr><td>Sulfite</td><td><code>SO₃²⁻</code></td><td>−2</td></tr>
+      <tr><td>Phosphate</td><td><code>PO₄³⁻</code></td><td>−3</td></tr>
+      <tr><td>Perchlorate</td><td><code>ClO₄⁻</code></td><td>−1</td></tr>
+      <tr><td>Chlorate</td><td><code>ClO₃⁻</code></td><td>−1</td></tr>
+      <tr><td>Chlorite</td><td><code>ClO₂⁻</code></td><td>−1</td></tr>
+      <tr><td>Hypochlorite</td><td><code>ClO⁻</code></td><td>−1</td></tr>
+      <tr><td>Permanganate</td><td><code>MnO₄⁻</code></td><td>−1</td></tr>
+      <tr><td>Chromate</td><td><code>CrO₄²⁻</code></td><td>−2</td></tr>
+    </table>
+    <div class="warn-box" style="margin-top:12px;font-size:0.9rem">
+      <strong>Oxyanion Pattern (for -ate, -ite families):</strong><br>
+      <span class="tag tag-orange">per___ate</span> = root + 1 extra oxygen → <code>ClO₄⁻</code><br>
+      <span class="tag tag-cyan">___ate</span> = root (most common) → <code>ClO₃⁻</code><br>
+      <span class="tag tag-purple">___ite</span> = root − 1 oxygen → <code>ClO₂⁻</code><br>
+      <span class="tag tag-green">hypo___ite</span> = root − 2 oxygen → <code>ClO⁻</code>
+    </div>
+    <div class="warn-box" style="margin-top:8px;font-size:0.9rem">
+      <strong>Writing polyatomic compound formulas:</strong> Use brackets around the polyatomic ion if subscript &gt; 1.<br>
+      Ca²⁺ + OH⁻ → criss-cross → Ca(OH)₂ = Calcium hydroxide ✓
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">4️⃣</span> Molecular Compounds (Non-metal + Non-metal)</div>
+    <p style="font-size:0.95rem;margin-bottom:12px">Use <strong>Greek prefixes</strong> to show how many of each atom.</p>
+    <table style="margin-bottom:12px">
+      <tr><th>Prefix</th><th>#</th><th>Prefix</th><th>#</th></tr>
+      <tr><td>Mono</td><td>1</td><td>Hexa</td><td>6</td></tr>
+      <tr><td>Di</td><td>2</td><td>Hepta</td><td>7</td></tr>
+      <tr><td>Tri</td><td>3</td><td>Octa</td><td>8</td></tr>
+      <tr><td>Tetra</td><td>4</td><td>Nona</td><td>9</td></tr>
+      <tr><td>Penta</td><td>5</td><td>Deca</td><td>10</td></tr>
+    </table>
+    <ol class="steps">
+      <li>Write the name of the first element (NO prefix if there's only 1)</li>
+      <li>Write the name of the second element with <strong>-ide</strong> ending</li>
+      <li>Add prefixes to BOTH elements based on count (mono only applies to 2nd element)</li>
+    </ol>
+    <table style="margin-top:12px">
+      <tr><th>Formula</th><th>Name</th></tr>
+      <tr><td><code>CO₂</code></td><td>Carbon dioxide</td></tr>
+      <tr><td><code>CO</code></td><td>Carbon monoxide (NOT monocarbon!)</td></tr>
+      <tr><td><code>N₂O₄</code></td><td>Dinitrogen tetroxide</td></tr>
+      <tr><td><code>PCl₅</code></td><td>Phosphorus pentachloride</td></tr>
+      <tr><td><code>SO₃</code></td><td>Sulfur trioxide</td></tr>
+      <tr><td><code>SF₆</code></td><td>Sulfur hexafluoride</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">5️⃣</span> Acids</div>
+    <div class="info-box" style="margin-bottom:12px">
+      Acids are molecular compounds dissolved in water with excess H⁺ ions. Sour, conduct electricity, react with metals and bases.
+    </div>
+    <div class="split-card">
+      <div class="split-left">
+        <div class="split-title text-cyan">Binary Acids (Hydro_ic acid)</div>
+        <p style="font-size:0.88rem;margin-bottom:8px">H + ONE non-metal, dissolved in water</p>
+        <ol class="steps" style="font-size:0.85rem">
+          <li>Start with "<strong>hydro</strong>"</li>
+          <li>Add the root of the non-metal</li>
+          <li>End with "<strong>ic acid</strong>"</li>
+        </ol>
+        <table style="margin-top:10px;font-size:0.85rem">
+          <tr><th>Formula</th><th>Name</th></tr>
+          <tr><td><code>HCl(aq)</code></td><td>Hydrochloric acid</td></tr>
+          <tr><td><code>HBr(aq)</code></td><td>Hydrobromic acid</td></tr>
+          <tr><td><code>HF(aq)</code></td><td>Hydrofluoric acid</td></tr>
+          <tr><td><code>H₂S(aq)</code></td><td>Hydrosulfuric acid</td></tr>
+          <tr><td><code>HI(aq)</code></td><td>Hydroiodic acid</td></tr>
+        </table>
+      </div>
+      <div class="split-right">
+        <div class="split-title text-orange">Oxyacids (contain oxyanions)</div>
+        <p style="font-size:0.88rem;margin-bottom:8px">H + an oxyanion (polyatomic with oxygen)</p>
+        <div class="warn-box" style="font-size:0.82rem">
+          <strong>-ate ion</strong> → <strong>_ic acid</strong><br>
+          sulfate → sulfuric acid (H₂SO₄)<br><br>
+          <strong>-ite ion</strong> → <strong>_ous acid</strong><br>
+          sulfite → sulfurous acid (H₂SO₃)<br><br>
+          <strong>per_ate</strong> → <strong>per_ic acid</strong><br>
+          perchlorate → perchloric acid<br><br>
+          <strong>hypo_ite</strong> → <strong>hypo_ous acid</strong><br>
+          hypochlorite → hypochlorous acid
+        </div>
+        <table style="margin-top:10px;font-size:0.83rem">
+          <tr><th>Formula</th><th>Name</th></tr>
+          <tr><td><code>H₂SO₄</code></td><td>Sulfuric acid</td></tr>
+          <tr><td><code>H₂SO₃</code></td><td>Sulfurous acid</td></tr>
+          <tr><td><code>HNO₃</code></td><td>Nitric acid</td></tr>
+          <tr><td><code>HNO₂</code></td><td>Nitrous acid</td></tr>
+          <tr><td><code>H₃PO₄</code></td><td>Phosphoric acid</td></tr>
+          <tr><td><code>H₂CO₃</code></td><td>Carbonic acid</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">6️⃣</span> Bases</div>
+    <div class="info-box" style="margin-bottom:12px">
+      Bases are ionic compounds that dissolve in water producing OH⁻. Bitter, feel slippery, conduct electricity. Most are metal + hydroxide.
+    </div>
+    <ol class="steps">
+      <li>Write the metal name (unchanged)</li>
+      <li>If multivalent, add Roman numeral for the charge</li>
+      <li>Write "hydroxide"</li>
+    </ol>
+    <table style="margin-top:12px">
+      <tr><th>Formula</th><th>Name</th></tr>
+      <tr><td><code>NaOH</code></td><td>Sodium hydroxide</td></tr>
+      <tr><td><code>Ca(OH)₂</code></td><td>Calcium hydroxide</td></tr>
+      <tr><td><code>Al(OH)₃</code></td><td>Aluminum hydroxide</td></tr>
+      <tr><td><code>Mg(OH)₂</code></td><td>Magnesium hydroxide (milk of magnesia)</td></tr>
+      <tr><td><code>KOH</code></td><td>Potassium hydroxide</td></tr>
+      <tr><td><code>NaHCO₃</code></td><td>Sodium bicarbonate (or sodium hydrogen carbonate)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎮</span> Practice Games — Naming & Formulas</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-cyan" onclick="showPage('games');launchGame('ionicnaming')">🧪 Ionic Naming</button>
+      <button class="btn btn-orange" onclick="showPage('games');launchGame('molecularnaming')">🔬 Molecular Naming</button>
+      <button class="btn btn-ghost" onclick="showPage('games');launchGame('acidnaming')">⚗️ Acid Naming</button>
+      <button class="btn btn-green" onclick="showPage('games');launchGame('formulawriting')">✏️ Formula Writing</button>
+      <button class="btn btn-ghost" onclick="showPage('games');launchGame('flashcards')">🃏 Polyatomic Flashcards</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ REACTIONS ═══════════════════ -->
+<section id="reactions" class="page">
+  <div class="section-header">
+    <h2>⚗️ Chemical Reactions & Balancing</h2>
+    <p>All 6 reaction types plus balancing equations</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔬</span> Anatomy of a Chemical Equation</div>
+    <div class="formula-box">
+      Reactants → Products<br>
+      2H₂(g) + O₂(g) → 2H₂O(l) + energy
+    </div>
+    <div class="quick-facts">
+      <div class="quick-fact"><strong>Reactants</strong>Left side. Substances that go IN. Get consumed.</div>
+      <div class="quick-fact"><strong>Products</strong>Right side. New substances formed.</div>
+      <div class="quick-fact"><strong>State symbols</strong>(s) solid · (l) liquid · (g) gas · (aq) dissolved in water</div>
+      <div class="quick-fact"><strong>Coefficient</strong>Number in FRONT of formula. Changes how many molecules.</div>
+      <div class="quick-fact"><strong>Subscript</strong>Small number inside the formula. CANNOT change when balancing.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">⚖️</span> Balancing Equations — Law of Conservation of Mass</div>
+    <div class="warn-box">
+      <strong>Law of Conservation of Mass:</strong> Matter cannot be created or destroyed. The number of atoms on the LEFT must EQUAL the right.
+    </div>
+    <ol class="steps" style="margin-top:12px">
+      <li>Write the skeleton equation (formulas but no coefficients)</li>
+      <li>Count atoms on each side</li>
+      <li>Add <strong>coefficients</strong> (big numbers in front) to balance — never change subscripts!</li>
+      <li>Balance complex atoms first, leave O and H for last</li>
+      <li>Final check — count ALL atoms on both sides</li>
+    </ol>
+    <div class="formula-box" style="margin-top:12px">
+      Skeleton: H₂ + Cl₂ → HCl  (NOT balanced!)<br>
+      Balanced: H₂ + Cl₂ → 2HCl  ✓ (2H on each side, 2Cl on each side)
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">1️⃣</span> Synthesis (Combination)</div>
+    <div class="reaction-type-card">
+      <div class="general-formula text-cyan">A + B → AB</div>
+      <p style="font-size:0.9rem">Two or more simple things <strong>combine into ONE</strong> bigger thing.</p>
+      <table style="margin-top:8px;font-size:0.88rem">
+        <tr><th>Word equation</th><th>Chemical equation</th></tr>
+        <tr><td>Sodium + chlorine → sodium chloride</td><td><code>2Na + Cl₂ → 2NaCl</code></td></tr>
+        <tr><td>Magnesium + oxygen → magnesium oxide</td><td><code>2Mg + O₂ → 2MgO</code></td></tr>
+        <tr><td>Hydrogen + oxygen → water</td><td><code>2H₂ + O₂ → 2H₂O</code></td></tr>
+        <tr><td>Carbon dioxide + water → carbonic acid</td><td><code>CO₂ + H₂O → H₂CO₃</code></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">2️⃣</span> Decomposition</div>
+    <div class="reaction-type-card">
+      <div class="general-formula text-orange">AB → A + B</div>
+      <p style="font-size:0.9rem">One compound <strong>breaks apart</strong> into simpler substances. Opposite of synthesis.</p>
+      <table style="margin-top:8px;font-size:0.88rem">
+        <tr><th>Chemical equation</th></tr>
+        <tr><td><code>2H₂O → 2H₂ + O₂</code> (electrolysis of water)</td></tr>
+        <tr><td><code>2H₂O₂ → 2H₂O + O₂</code> (hydrogen peroxide)</td></tr>
+        <tr><td><code>CaCO₃ → CaO + CO₂</code> (limestone heating)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">3️⃣</span> Single Displacement</div>
+    <div class="reaction-type-card">
+      <div class="general-formula text-purple">A + BC → AC + B</div>
+      <p style="font-size:0.9rem">One element <strong>kicks out (replaces)</strong> another element in a compound. Like cutting in line!</p>
+      <div class="info-box" style="font-size:0.85rem;margin:8px 0">
+        <strong>Two situations:</strong><br>
+        • Metal displaces metal: <code>Zn + CuSO₄ → ZnSO₄ + Cu</code><br>
+        • Non-metal displaces non-metal: <code>Cl₂ + 2KI → 2KCl + I₂</code><br>
+        • Metal + acid (H⁺ acts like metal): <code>Zn + 2HCl → ZnCl₂ + H₂</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">4️⃣</span> Double Displacement</div>
+    <div class="reaction-type-card">
+      <div class="general-formula text-yellow">AB + CD → AD + CB</div>
+      <p style="font-size:0.9rem">Two ionic compounds <strong>swap their cations (positive ions)</strong>. Like partners switching!</p>
+      <div class="info-box" style="font-size:0.85rem;margin:8px 0">
+        <code>Pb(NO₃)₂ + 2KI → PbI₂ + 2KNO₃</code><br>
+        <code>AgNO₃ + NaCl → AgCl + NaNO₃</code>
+      </div>
+      <p style="font-size:0.85rem">Often produces a precipitate (solid) or water.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">5️⃣</span> Neutralization</div>
+    <div class="reaction-type-card">
+      <div class="general-formula text-pink">Acid + Base → Salt + Water</div>
+      <p style="font-size:0.9rem">An acid and base react, <strong>neutralizing each other</strong>. H⁺ + OH⁻ → H₂O</p>
+      <div class="info-box" style="font-size:0.85rem;margin:8px 0">
+        <code>HCl + NaOH → NaCl + H₂O</code><br>
+        <code>H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O</code><br>
+        <code>2HCl + Mg(OH)₂ → MgCl₂ + 2H₂O</code>
+      </div>
+      <p style="font-size:0.85rem">This is also a <strong>double displacement</strong>! Real life example: antacids neutralizing stomach acid.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">6️⃣</span> Combustion</div>
+    <div class="reaction-type-card">
+      <div class="general-formula text-red">Fuel + O₂ → Oxides + Energy</div>
+      <p style="font-size:0.9rem">A fuel reacts with oxygen, releasing energy (fire!). Always needs O₂ as a reactant.</p>
+      <div class="split-card" style="margin-top:10px">
+        <div class="split-left" style="font-size:0.85rem">
+          <div class="split-title text-green">Complete Combustion</div>
+          Enough O₂ present.<br>
+          Products: CO₂ + H₂O + energy<br>
+          <code>CH₄ + 2O₂ → CO₂ + 2H₂O</code><br>
+          <code>C₃H₈ + 5O₂ → 3CO₂ + 4H₂O</code>
+        </div>
+        <div class="split-right" style="font-size:0.85rem">
+          <div class="split-title text-red">Incomplete Combustion</div>
+          Not enough O₂ → produces poisonous CO and soot (C)<br>
+          Products: CO₂ + H₂O + CO + C<br>
+          <code>C₄H₁₀ + 5O₂ → 2CO₂ + 5H₂O + CO + C</code>
+        </div>
+      </div>
+      <div class="warn-box" style="margin-top:10px;font-size:0.85rem">
+        <strong>Elemental combustion:</strong> Non-hydrocarbon elements burning.<br>
+        <code>2Mg + O₂ → 2MgO + energy</code> — This is also a SYNTHESIS reaction!
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎮</span> Practice Games — Reactions</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-cyan" onclick="showPage('games');launchGame('balancer')">⚖️ Equation Balancer</button>
+      <button class="btn btn-orange" onclick="showPage('games');launchGame('reactiontype')">🔬 Reaction Type Classifier</button>
+      <button class="btn btn-ghost" onclick="showPage('games');launchGame('combustion')">🔥 Combustion Challenge</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PH ═══════════════════ -->
+<section id="ph" class="page">
+  <div class="section-header">
+    <h2>🧪 pH, Acids, Bases & Environment</h2>
+    <p>The pH scale, indicators, and environmental impacts</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📏</span> The pH Scale</div>
+    <div style="margin:16px 0">
+      <div class="ph-scale"></div>
+      <div class="ph-numbers">
+        <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:0.88rem">
+        <span class="text-red">← More Acidic</span>
+        <span class="text-green">NEUTRAL (7)</span>
+        <span style="color:#66aaff">More Basic →</span>
+      </div>
+    </div>
+    <div class="quick-facts">
+      <div class="quick-fact"><strong>0–6.9</strong>ACID — excess H⁺ ions. The lower the pH, the stronger the acid.</div>
+      <div class="quick-fact"><strong>7.0</strong>NEUTRAL — pure water. Equal H⁺ and OH⁻.</div>
+      <div class="quick-fact"><strong>7.1–14</strong>BASE — excess OH⁻ ions. The higher the pH, the stronger the base.</div>
+      <div class="quick-fact"><strong>LOG scale!</strong>Each 1 unit = 10× more acidic/basic. pH 3 is 10× more acidic than pH 4.</div>
+    </div>
+    <table style="margin-top:12px;font-size:0.88rem">
+      <tr><th>Substance</th><th>pH</th><th>Type</th></tr>
+      <tr><td>Battery acid / stomach acid</td><td>0–2</td><td><span class="badge badge-acid">STRONG ACID</span></td></tr>
+      <tr><td>Lemon juice</td><td>2–3</td><td><span class="badge badge-acid">ACID</span></td></tr>
+      <tr><td>Vinegar</td><td>3</td><td><span class="badge badge-acid">ACID</span></td></tr>
+      <tr><td>Coffee / tomatoes</td><td>5</td><td><span class="badge badge-acid">WEAK ACID</span></td></tr>
+      <tr><td>Rain (normal)</td><td>5.6</td><td><span class="badge badge-acid">SLIGHTLY ACID</span></td></tr>
+      <tr><td>Skin (normal)</td><td>5.5</td><td><span class="badge badge-acid">SLIGHTLY ACID</span></td></tr>
+      <tr><td>Pure water</td><td>7</td><td><span class="badge badge-neutral">NEUTRAL</span></td></tr>
+      <tr><td>Blood</td><td>7.4</td><td><span class="badge badge-neutral">NEAR NEUTRAL</span></td></tr>
+      <tr><td>Baking soda</td><td>8</td><td><span class="badge badge-base">WEAK BASE</span></td></tr>
+      <tr><td>Milk of magnesia (antacid)</td><td>10</td><td><span class="badge badge-base">BASE</span></td></tr>
+      <tr><td>Bleach</td><td>12</td><td><span class="badge badge-base">STRONG BASE</span></td></tr>
+      <tr><td>Drain cleaner / oven cleaner</td><td>13–14</td><td><span class="badge badge-base">VERY STRONG BASE</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎨</span> pH Indicators</div>
+    <table>
+      <tr><th>Indicator</th><th>In Acid</th><th>In Base</th></tr>
+      <tr><td>Red Litmus paper</td><td>Stays red</td><td>Turns <strong class="text-cyan">BLUE</strong></td></tr>
+      <tr><td>Blue Litmus paper</td><td>Turns <strong class="text-red">RED</strong></td><td>Stays blue</td></tr>
+      <tr><td>Phenolphthalein</td><td>Colourless</td><td>Turns <strong class="text-pink">PINK</strong> (at ~pH 8)</td></tr>
+      <tr><td>Bromothymol Blue (BTB)</td><td>Turns yellow</td><td>Turns blue</td></tr>
+      <tr><td>pH paper</td><td>Matches colour scale</td><td>Matches colour scale</td></tr>
+      <tr><td>pH probe</td><td>Digital reading</td><td>Digital reading</td></tr>
+    </table>
+    <div class="info-box" style="margin-top:10px;font-size:0.9rem">
+      <strong class="text-cyan">Memory trick for litmus:</strong> "Blue → Base, Red → Acid" — If blue paper stays blue, you have a base. If it turns red, you have an acid.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🌍</span> Environmental & Human Impacts</div>
+    <div class="reaction-type-card" style="margin-bottom:12px">
+      <h4 class="text-orange">🌧️ Acid Precipitation (Acid Rain)</h4>
+      <p style="font-size:0.9rem">CO₂ and pollutants (SO₂, NOₓ) from burning fossil fuels dissolve in rain water → carbonic acid, sulfuric acid, nitric acid.</p>
+      <div class="formula-box">CO₂ + H₂O → H₂CO₃ (carbonic acid)</div>
+      <ul class="bullet" style="font-size:0.88rem;margin-top:8px">
+        <li>Destroys soil microorganisms and plants → soil runoff</li>
+        <li>Lowers lake pH → aquatic ecosystems collapse, fish die</li>
+        <li>Damages buildings and infrastructure</li>
+        <li><strong>Solution:</strong> Reduce pollution OR "lime" (add base to) water bodies</li>
+      </ul>
+    </div>
+    <div class="reaction-type-card" style="margin-bottom:12px">
+      <h4 class="text-purple">⛏️ Heavy Metal Contamination (Mine Tailings)</h4>
+      <ul class="bullet" style="font-size:0.88rem">
+        <li>Mine waste stored in "tailing ponds" — when rain hits it, acids dissolve heavy metals</li>
+        <li>Acidic, metal-rich water leaks into groundwater → used for drinking/crops</li>
+        <li><strong>Solution:</strong> "Liming" tailing ponds (neutralizing the acid)</li>
+      </ul>
+    </div>
+    <div class="reaction-type-card">
+      <h4 class="text-cyan">💊 pH in the Human Body</h4>
+      <ul class="bullet" style="font-size:0.88rem">
+        <li>Blood pH must stay at ~7.41 — even 0.1 change can be life-threatening</li>
+        <li>Stomach produces HCl (pH ≈ 2) to digest food</li>
+        <li>Excess stomach acid → heartburn/ulcers → treated with antacids (neutralization!)</li>
+        <li>Skin pH ≈ 5.5 — mildly acidic to control bacteria. Soap (basic) disrupts this.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🎮</span> Practice Games — pH</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn btn-cyan" onclick="showPage('games');launchGame('phscale')">📏 pH Scale Placement</button>
+      <button class="btn btn-orange" onclick="showPage('games');launchGame('bigquiz')">🏆 Final Boss Quiz</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ GAMES HUB ═══════════════════ -->
+<section id="games" class="page">
+  <div class="section-header">
+    <h2>🎮 Games Hub</h2>
+    <p>16 interactive games covering every test topic. Click a game to start!</p>
+  </div>
+  
+  <div class="games-grid" id="games-grid"></div>
+  
+  <div id="game-area">
+    <div class="center" style="padding:60px 20px;color:var(--muted)">
+      <div style="font-size:4rem;margin-bottom:16px">🎮</div>
+      <h3 style="font-family:'Rajdhani',sans-serif;font-size:1.5rem;color:var(--text);margin-bottom:8px">Select a game above to get started</h3>
+      <p style="font-size:0.95rem">Each game teaches you the material while you play.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+// ══════════════════════════════════════════
+//  PAGE NAVIGATION
+// ══════════════════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  btns.forEach(b => { if (b.getAttribute('onclick').includes(id)) b.classList.add('active'); });
+  window.scrollTo(0,0);
+}
+
+// ══════════════════════════════════════════
+//  CHECKLIST
+// ══════════════════════════════════════════
+const checkItems = [
+  "Evidence of physical vs chemical change",
+  "Hierarchy (classification) of matter",
+  "Periodic trends — groups, periods, metals, nonmetals",
+  "Bohr-Rutherford diagrams & valence electrons",
+  "Atomic stability & the octet rule",
+  "Ion formation (gain/lose electrons, cation/anion)",
+  "Ionic bonds (metal + nonmetal, electron transfer)",
+  "Molecular bonds (nonmetal + nonmetal, sharing)",
+  "Acid-base chemistry — properties of acids and bases",
+  "Environmental impacts of acids (acid rain, mining)",
+  "The pH scale (0–14, log scale, indicators)",
+  "Synthesis reactions: A + B → AB",
+  "Decomposition reactions: AB → A + B",
+  "Single displacement reactions: A + BC → AC + B",
+  "Double displacement reactions: AB + CD → AD + CB",
+  "Neutralization reactions: acid + base → salt + H₂O",
+  "Combustion reactions (complete and incomplete)",
+  "Naming binary ionic compounds",
+  "Naming multivalent ionic compounds (Roman numerals)",
+  "Naming polyatomic ionic compounds",
+  "Naming molecular compounds (Greek prefixes)",
+  "Naming binary acids (hydro_ic acid)",
+  "Naming oxyacids (_ic/_ous acid)",
+  "Naming bases (metal hydroxide)",
+  "Writing ALL formulas (criss-cross method)",
+  "Balancing chemical equations (coefficients)"
+];
+const saved = JSON.parse(localStorage.getItem('chem_checklist')||'{}');
+const cl = document.getElementById('checklist-items');
+checkItems.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'check-item' + (saved[i] ? ' done' : '');
+  div.innerHTML = `<div class="check-icon" onclick="toggleCheck(${i},this.parentElement)">${saved[i]?'✓':''}</div><span>${item}</span>`;
+  cl.appendChild(div);
+});
+function toggleCheck(i, el) {
+  el.classList.toggle('done');
+  const isDone = el.classList.contains('done');
+  saved[i] = isDone;
+  localStorage.setItem('chem_checklist', JSON.stringify(saved));
+  const icon = el.querySelector('.check-icon');
+  icon.textContent = isDone ? '✓' : '';
+}
+
+// ══════════════════════════════════════════
+//  GAMES DATA & ENGINE
+// ══════════════════════════════════════════
+const GAMES = [
+  { id:'sorter',       icon:'🔬', title:'Change Sorter',        desc:'Physical or Chemical change?' },
+  { id:'classification', icon:'🌳', title:'Matter Classification', desc:'Element, compound, or mixture?' },
+  { id:'atomicquiz',   icon:'⚛️', title:'Atomic Structure Quiz',  desc:'Protons, neutrons, electrons' },
+  { id:'brbuilder',    icon:'⭕', title:'BR Diagram Builder',     desc:'Electron shell configurations' },
+  { id:'trends',       icon:'📊', title:'Periodic Trends Quiz',   desc:'Groups, periods, properties' },
+  { id:'ionicvsmolecular', icon:'⚡', title:'Ionic vs Molecular',  desc:'Sort compounds by bond type' },
+  { id:'ionformation', icon:'🔋', title:'Ion Formation',          desc:'Predict ion charges & names' },
+  { id:'ionicnaming',  icon:'🏷️', title:'Ionic Naming',           desc:'Name ionic compounds' },
+  { id:'molecularnaming', icon:'🔬', title:'Molecular Naming',    desc:'Use Greek prefixes' },
+  { id:'acidnaming',   icon:'⚗️', title:'Acid Naming',            desc:'Binary acids & oxyacids' },
+  { id:'formulawriting', icon:'✏️', title:'Formula Writing',      desc:'Write formulas from names' },
+  { id:'flashcards',   icon:'🃏', title:'Polyatomic Flashcards',  desc:'Learn all polyatomic ions' },
+  { id:'balancer',     icon:'⚖️', title:'Equation Balancer',      desc:'Balance chemical equations' },
+  { id:'reactiontype', icon:'🧬', title:'Reaction Type ID',       desc:'Classify all 6 reaction types' },
+  { id:'combustion',   icon:'🔥', title:'Combustion Challenge',   desc:'Complete & incomplete products' },
+  { id:'phscale',      icon:'🌈', title:'pH Scale Placement',     desc:'Where on the pH scale?' },
+  { id:'bigquiz',      icon:'🏆', title:'Final Boss Quiz',        desc:'All 26 topics in one quiz!' },
+];
+
+// Render games grid
+const grid = document.getElementById('games-grid');
+GAMES.forEach(g => {
+  const card = document.createElement('div');
+  card.className = 'game-card';
+  card.id = 'gc-' + g.id;
+  card.innerHTML = `<div class="game-icon">${g.icon}</div><div class="game-title">${g.title}</div><div class="game-desc">${g.desc}</div>`;
+  card.onclick = () => launchGame(g.id);
+  grid.appendChild(card);
+});
+
+// ── Global game state ──
+let gScore = 0, gTotal = 0, gIdx = 0, gData = [], gName = '';
+
+function launchGame(id) {
+  showPage('games');
+  document.querySelectorAll('.game-card').forEach(c => c.classList.remove('active'));
+  const gc = document.getElementById('gc-' + id);
+  if (gc) gc.classList.add('active');
+  gScore = 0; gTotal = 0; gIdx = 0;
+  const g = GAMES.find(x => x.id === id);
+  gName = g ? g.title : id;
+  const fn = gameBuilders[id];
+  if (fn) fn();
+  else document.getElementById('game-area').innerHTML = `<div class="center" style="padding:40px;color:var(--muted)">Game coming soon!</div>`;
+}
+
+function gameHeader(extra='') {
+  return `<div class="game-header"><div class="game-title-main">🎮 ${gName}</div><div class="score-display">Score: <span id="gscore">${gScore}</span>/<span id="gtotal">${gTotal}</span></div>${extra}</div>`;
+}
+
+function updateScore(correct) {
+  if (correct) gScore++;
+  gTotal++;
+  document.getElementById('gscore').textContent = gScore;
+  document.getElementById('gtotal').textContent = gTotal;
+}
+
+function shuffleArr(a) { return [...a].sort(() => Math.random()-0.5); }
+
+function mcGame(questions, titleExtra='') {
+  gData = shuffleArr(questions);
+  gIdx = 0;
+  renderMCQ();
+}
+
+function renderMCQ() {
+  if (gIdx >= gData.length) { gameOver(); return; }
+  const q = gData[gIdx];
+  const opts = shuffleArr(q.options);
+  const ga = document.getElementById('game-area');
+  
+  let prog = Math.round((gIdx/gData.length)*100);
+  
+  ga.innerHTML = gameHeader() + `
+    <div class="progress-bar"><div class="progress-fill" style="width:${prog}%"></div></div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:12px">Question ${gIdx+1} of ${gData.length}</p>
+    <div class="question-box">
+      <div class="question-text">${q.question}</div>
+      ${q.formula ? `<div class="question-formula">${q.formula}</div>` : ''}
+    </div>
+    <div class="options-grid" id="opts"></div>
+    <div class="feedback" id="fb"></div>
+    <div id="next-btn" style="display:none;margin-top:12px">
+      <button class="btn btn-cyan" onclick="nextMCQ()">Next Question →</button>
+    </div>`;
+  
+  const optsEl = document.getElementById('opts');
+  opts.forEach(opt => {
+    const btn = document.createElement('div');
+    btn.className = 'option-btn';
+    btn.textContent = opt;
+    btn.onclick = () => checkMCQ(opt, q.answer, q.explain||'', btn, optsEl);
+    optsEl.appendChild(btn);
+  });
+}
+
+function checkMCQ(chosen, correct, explain, btn, optsEl) {
+  const isCorrect = chosen === correct;
+  updateScore(isCorrect);
+  optsEl.querySelectorAll('.option-btn').forEach(b => {
+    b.style.pointerEvents = 'none';
+    if (b.textContent === correct) b.classList.add('reveal');
+  });
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  const fb = document.getElementById('fb');
+  fb.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+  fb.innerHTML = (isCorrect ? '✅ Correct! ' : `❌ Incorrect. The answer is: <strong>${correct}</strong>. `) + (explain || '');
+  document.getElementById('next-btn').style.display = 'block';
+}
+
+function nextMCQ() { gIdx++; renderMCQ(); }
+
+function gameOver() {
+  const pct = gTotal > 0 ? Math.round(gScore/gTotal*100) : 0;
+  const grade = pct >= 80 ? '🏆 Excellent!' : pct >= 60 ? '👍 Good job!' : '📚 Keep practicing!';
+  document.getElementById('game-area').innerHTML = gameHeader() + `
+    <div class="center" style="padding:40px 0">
+      <div style="font-size:5rem;margin-bottom:16px">${pct>=80?'🏆':pct>=60?'🌟':'📚'}</div>
+      <h2 style="font-family:'Rajdhani',sans-serif;font-size:2rem;margin-bottom:8px">${grade}</h2>
+      <p style="color:var(--muted);font-size:1.1rem">You scored <strong style="color:var(--cyan)">${gScore}/${gTotal}</strong> (${pct}%)</p>
+      <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-cyan" onclick="launchGame('${GAMES.find(x=>x.title===gName)?.id||''}')">🔄 Play Again</button>
+        <button class="btn btn-ghost" onclick="showPage('games');document.getElementById('game-area').innerHTML=''">🎮 Other Games</button>
+      </div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════
+//  GAME BUILDERS
+// ══════════════════════════════════════════
+const gameBuilders = {};
+
+// ─── GAME 1: Change Sorter ────────────────
+gameBuilders.sorter = function() {
+  const items = shuffleArr([
+    {text:"Ice melting into water", ans:"Physical", tip:"Only state changes — same substance (H₂O)"},
+    {text:"Water boiling into steam", ans:"Physical", tip:"Just a state change"},
+    {text:"Cutting a piece of paper", ans:"Physical", tip:"Same substance, just smaller pieces"},
+    {text:"Dissolving sugar in water", ans:"Physical", tip:"Can be recovered by evaporation"},
+    {text:"Crushing a can", ans:"Physical", tip:"Shape changed, but still aluminum"},
+    {text:"Stretching a rubber band", ans:"Physical", tip:"Same rubber, just stretched"},
+    {text:"Burning wood in a fireplace", ans:"Chemical", tip:"New substances produced: CO₂, water, ash"},
+    {text:"Rusting iron", ans:"Chemical", tip:"Iron + O₂ → rust (Fe₂O₃) — new substance!"},
+    {text:"Cooking an egg", ans:"Chemical", tip:"Proteins permanently change — cannot undo"},
+    {text:"Milk going sour", ans:"Chemical", tip:"Bacteria produce new acids — new substance"},
+    {text:"Baking a cake", ans:"Chemical", tip:"New substances form — can't un-bake!"},
+    {text:"Fireworks exploding", ans:"Chemical", tip:"Chemical reactions produce light, heat, gas"},
+    {text:"Bleaching hair", ans:"Chemical", tip:"Chemical reaction destroys pigment"},
+    {text:"Antacid tablet fizzing in stomach", ans:"Chemical", tip:"Neutralization reaction producing CO₂ gas"},
+    {text:"An apple turning brown", ans:"Chemical", tip:"Oxidation reaction — new compound forms"},
+    {text:"Freezing water into ice", ans:"Physical", tip:"Still H₂O, just in solid form"},
+    {text:"Grinding chalk into powder", ans:"Physical", tip:"Same compound, smaller pieces"},
+    {text:"Candle wax melting", ans:"Physical", tip:"Just a state change — still wax"},
+    {text:"Photosynthesis in leaves", ans:"Chemical", tip:"CO₂ + H₂O → glucose + O₂ — new substances!"},
+    {text:"Metal tarnishing (turning dull)", ans:"Chemical", tip:"Metal reacts with air — new compound forms"},
+    {text:"Digesting food in your stomach", ans:"Chemical", tip:"Enzymes and acids break food into new molecules — chemical change"},
+    {text:"Mixing salt and pepper together", ans:"Physical", tip:"Both substances remain unchanged — just a mixture"},
+    {text:"Tearing paper into small pieces", ans:"Physical", tip:"Same paper, just smaller — no new substance formed"},
+    {text:"A nail rusting in the rain", ans:"Chemical", tip:"Iron + water + oxygen → rust (Fe₂O₃) — brand new compound"},
+    {text:"Sublimation of dry ice (CO₂ solid → gas)", ans:"Physical", tip:"State change only — still CO₂, just in gas form"},
+    {text:"Pouring oil and water into the same cup", ans:"Physical", tip:"They don't react — still oil and water, just in the same container"},
+    {text:"A match igniting", ans:"Chemical", tip:"Heat + fuel + oxygen → combustion, producing new gases and ash"},
+    {text:"Food coloring dissolving in water", ans:"Physical", tip:"The dye molecules spread out but don't change — still the same molecules"},
+    {text:"A battery powering a device", ans:"Chemical", tip:"Chemical reactions inside the battery release electrical energy"},
+    {text:"Evaporation of alcohol (rubbing alcohol drying)", ans:"Physical", tip:"Alcohol changes from liquid to gas — same molecules, just different state"},
+    {text:"Concrete hardening after being poured", ans:"Chemical", tip:"Water reacts with cement components → new crystalline compounds form. Can't undo!"},
+    {text:"Making ice cream by freezing cream", ans:"Physical", tip:"Cream changes state to a frozen solid — same molecules, just frozen"},
+    {text:"A glow stick glowing", ans:"Chemical", tip:"Two chemicals mix inside → chemical reaction → light energy released"},
+  ]);
+  
+  let idx = 0, sc = 0, tot = 0;
+  
+  function renderSorter() {
+    if (idx >= items.length) {
+      const pct = Math.round(sc/tot*100);
+      document.getElementById('game-area').innerHTML = gameHeader() + `<div class="center" style="padding:40px"><div style="font-size:5rem">${pct>=80?'🏆':'📚'}</div><h2 style="font-family:'Rajdhani',sans-serif;font-size:2rem">${pct>=80?'Excellent!':'Keep studying!'}</h2><p style="color:var(--muted)">Score: ${sc}/${tot} (${pct}%)</p><button class="btn btn-cyan" style="margin-top:20px" onclick="launchGame('sorter')">🔄 Play Again</button></div>`;
+      return;
+    }
+    const item = items[idx];
+    const ga = document.getElementById('game-area');
+    ga.innerHTML = gameHeader() + `
+      <div class="progress-bar"><div class="progress-fill" style="width:${Math.round(idx/items.length*100)}%"></div></div>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:16px">Question ${idx+1}/${items.length}</p>
+      <div class="question-box" style="margin-bottom:24px">
+        <div class="question-text" style="font-size:1.2rem;font-weight:600">${item.text}</div>
+        <p style="color:var(--muted);font-size:0.9rem;margin-top:8px">Is this a physical or chemical change?</p>
+      </div>
+      <div style="display:flex;gap:16px;justify-content:center">
+        <button class="btn btn-cyan btn-lg" onclick="checkSorter('Physical')">🔵 Physical Change</button>
+        <button class="btn btn-orange btn-lg" onclick="checkSorter('Chemical')">🔥 Chemical Change</button>
+      </div>
+      <div class="feedback" id="sfb" style="margin-top:16px"></div>
+      <div id="snext" style="display:none;margin-top:12px;text-align:center">
+        <button class="btn btn-green" onclick="nextSorter()">Next →</button>
+      </div>`;
+    
+    window.checkSorter = function(chosen) {
+      tot++; gTotal = tot;
+      const correct = chosen === item.ans;
+      if (correct) { sc++; gScore = sc; }
+      document.getElementById('gscore').textContent = sc;
+      document.getElementById('gtotal').textContent = tot;
+      document.querySelectorAll('.btn-cyan,.btn-orange').forEach(b => b.disabled = true);
+      const fb = document.getElementById('sfb');
+      fb.className = 'feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
+      fb.innerHTML = (correct ? '✅ Correct! ' : `❌ It's actually ${item.ans}. `) + '<em>' + item.tip + '</em>';
+      document.getElementById('snext').style.display = 'block';
+    };
+    window.nextSorter = function() { idx++; renderSorter(); };
+  }
+  renderSorter();
+};
+
+// ─── GAME 2: Matter Classification ────────
+gameBuilders.classification = function() {
+  mcGame([
+    {question:"What type of matter is this?", formula:"Gold ring (Au)", answer:"Element", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Gold is a pure substance made of only one type of atom."},
+    {question:"What type of matter is this?", formula:"Water (H₂O)", answer:"Compound", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Water is two elements (H and O) chemically bonded in a fixed ratio."},
+    {question:"What type of matter is this?", formula:"Salt water", answer:"Homogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Salt water looks uniform — you can't see the separate parts."},
+    {question:"What type of matter is this?", formula:"Soil", answer:"Heterogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Soil contains rocks, clay, organic matter — you can see the different parts."},
+    {question:"What type of matter is this?", formula:"Carbon dioxide (CO₂)", answer:"Compound", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"CO₂ has C and O bonded in a fixed ratio — it's a compound."},
+    {question:"What type of matter is this?", formula:"Air", answer:"Homogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Air is a uniform mix of N₂, O₂, CO₂, Ar, etc."},
+    {question:"What type of matter is this?", formula:"Sand and gravel", answer:"Heterogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"You can clearly see the sand and gravel as separate parts."},
+    {question:"What type of matter is this?", formula:"Copper wire (Cu)", answer:"Element", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Copper is a pure element — only one type of atom."},
+    {question:"What type of matter is this?", formula:"Table salt (NaCl)", answer:"Compound", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"NaCl has Na and Cl chemically bonded in a fixed ratio."},
+    {question:"What type of matter is this?", formula:"Vinegar", answer:"Homogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Vinegar is water + acetic acid, uniformly mixed."},
+    {question:"What type of matter is this?", formula:"Milk (with visible cream)", answer:"Heterogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Milk is a colloid — fat droplets in water, not truly uniform."},
+    {question:"What type of matter is this?", formula:"Oxygen gas (O₂)", answer:"Element", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"O₂ is still just oxygen atoms — it's an element (diatomic)."},
+    {question:"What type of matter is this?", formula:"Rust (Fe₂O₃)", answer:"Compound", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Rust is iron and oxygen chemically bonded — a compound."},
+    {question:"What is a pure substance?", formula:"", answer:"A substance with a single, fixed composition throughout", options:["A substance with a single, fixed composition throughout","Any solid material","Something that can be separated by filtering","A liquid with no color"], explain:"Pure substances (elements and compounds) always have exactly the same composition."},
+    {question:"Which process can separate a mixture but NOT break down a compound?", formula:"", answer:"Physical process (filtering, evaporation)", options:["Physical process (filtering, evaporation)","Chemical reaction","Electrolysis","Nuclear fusion"], explain:"Mixtures can be separated physically. Compounds require chemical reactions to break them down."},
+    {question:"What type of matter is this?", formula:"Bronze (copper + tin alloy)", answer:"Homogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"An alloy is a uniform mixture of metals. Bronze looks the same throughout — you can't see individual copper or tin pieces."},
+    {question:"What type of matter is this?", formula:"Hydrogen gas (H₂)", answer:"Element", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"H₂ is just hydrogen atoms bonded in pairs. Only one type of atom = element (even though it's diatomic)."},
+    {question:"What type of matter is this?", formula:"Salad (lettuce, tomato, croutons)", answer:"Heterogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"You can clearly see and pick out the different parts — lettuce, tomato, croutons. Heterogeneous mixture!"},
+    {question:"What type of matter is this?", formula:"Ammonia gas (NH₃)", answer:"Compound", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"NH₃ = nitrogen and hydrogen chemically bonded in a fixed ratio (1:3). Compound!"},
+    {question:"What type of matter is this?", formula:"Stainless steel (iron + carbon + chromium)", answer:"Homogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Stainless steel is an alloy — a uniform mixture of metals. You can't see the separate metals inside it."},
+    {question:"What is a compound?", formula:"", answer:"Two or more elements chemically bonded in a fixed ratio", options:["Two or more elements chemically bonded in a fixed ratio","A uniform mix of two substances","Two elements physically blended","Any substance with more than one atom"], explain:"Compounds have elements in a FIXED ratio (like H₂O always has 2H:1O). They can only be separated by chemical means."},
+    {question:"How is a compound DIFFERENT from a mixture?", formula:"", answer:"Compounds have a fixed ratio and can only be separated chemically; mixtures can be separated physically", options:["Compounds have a fixed ratio and can only be separated chemically; mixtures can be separated physically","Compounds have more atoms","Mixtures are always liquids","Compounds are always gases"], explain:"NaCl is always 1 Na : 1 Cl (compound). Salt water can be any ratio of salt to water (mixture) and the salt can be recovered by evaporation."},
+    {question:"What type of matter is this?", formula:"Diamond (pure carbon, C)", answer:"Element", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Diamond is made of ONLY carbon atoms arranged in a crystal lattice. Pure carbon = element."},
+    {question:"What type of matter is this?", formula:"Muddy water", answer:"Heterogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Muddy water has visible dirt particles. You can see the two separate components — heterogeneous mixture."},
+    {question:"What type of matter is this?", formula:"Baking soda (NaHCO₃)", answer:"Compound", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"NaHCO₃ has Na, H, C, and O chemically bonded in a fixed ratio. It's a compound."},
+    {question:"What type of matter is this?", formula:"Chicken noodle soup", answer:"Heterogeneous mixture", options:["Element","Compound","Homogeneous mixture","Heterogeneous mixture"], explain:"Soup has visible chunks (noodles, chicken, veggies, broth). You can see and separate the different parts — heterogeneous."},
+  ]);
+};
+
+// ─── GAME 3: Atomic Structure Quiz ────────
+gameBuilders.atomicquiz = function() {
+  mcGame([
+    {question:"What is the atomic number of an element?", formula:"", answer:"The number of protons", options:["The number of protons","The number of neutrons","The mass number","The number of electrons in the outer shell"], explain:"The atomic number = number of protons, which defines the element."},
+    {question:"How many neutrons does sodium have?", formula:"Na: Atomic # = 11, Mass # = 23", answer:"12", options:["11","12","23","2"], explain:"Neutrons = Mass # − Atomic # = 23 − 11 = 12"},
+    {question:"In a neutral atom, which particles are equal in number?", formula:"", answer:"Protons and electrons", options:["Protons and electrons","Protons and neutrons","Electrons and neutrons","All three"], explain:"A neutral atom has no charge because #protons = #electrons."},
+    {question:"Which particles are found in the nucleus?", formula:"", answer:"Protons and neutrons", options:["Protons and neutrons","Electrons and protons","Electrons only","Neutrons only"], explain:"The nucleus contains protons (p⁺) and neutrons (n⁰)."},
+    {question:"What is the charge of an electron?", formula:"", answer:"Negative (−)", options:["Negative (−)","Positive (+)","Neutral (0)","Depends on the element"], explain:"Electrons carry a negative charge."},
+    {question:"How many electrons can fit in the FIRST shell?", formula:"", answer:"2", options:["2","8","18","4"], explain:"The first shell holds a maximum of 2 electrons."},
+    {question:"What is the electron configuration of chlorine?", formula:"Cl, Atomic # = 17", answer:"2, 8, 7", options:["2, 8, 7","2, 7, 8","2, 8, 8","3, 8, 6"], explain:"17 electrons: 2 in shell 1, 8 in shell 2, 7 in shell 3."},
+    {question:"How many valence electrons does oxygen have?", formula:"O, Atomic # = 8", answer:"6", options:["2","4","6","8"], explain:"O has electron config 2, 6 — so 6 valence electrons in the outer shell."},
+    {question:"What does the Octet Rule state?", formula:"", answer:"Atoms want 8 electrons in their outer shell", options:["Atoms want 8 electrons in their outer shell","Atoms can only form 8 bonds","The 8th group contains noble gases","Atoms have 8 shells"], explain:"The octet rule: atoms react to achieve a full outer shell of 8 electrons (like noble gases)."},
+    {question:"Which group of elements has atoms that are ALREADY stable and rarely react?", formula:"", answer:"Noble Gases (Group 18)", options:["Noble Gases (Group 18)","Alkali Metals (Group 1)","Halogens (Group 17)","Transition metals"], explain:"Noble gases have full outer shells — they're already at maximum stability."},
+    {question:"What does the atomic mass number tell you?", formula:"", answer:"Total number of protons + neutrons", options:["Total number of protons + neutrons","Only neutrons","Only protons","Number of electrons"], explain:"Atomic mass ≈ protons + neutrons (neutrons = mass − atomic#)."},
+    {question:"How many electrons can fit in the SECOND or THIRD shell?", formula:"", answer:"8", options:["2","4","8","16"], explain:"Shells 2 and 3 can each hold up to 8 electrons."},
+    {question:"Carbon has atomic number 6. What is its electron configuration?", formula:"C, Atomic # = 6", answer:"2, 4", options:["2, 4","3, 3","6","2, 2, 2"], explain:"6 electrons: 2 fill the first shell, 4 go in the second shell."},
+    {question:"Which element has this electron configuration: 2, 8, 1?", formula:"", answer:"Sodium (Na)", options:["Sodium (Na)","Lithium (Li)","Potassium (K)","Neon (Ne)"], explain:"Sodium has atomic number 11: 2 + 8 + 1 = 11. Na is in Group 1 (1 valence electron)."},
+    {question:"What are elements in the same GROUP (column) of the periodic table known to share?", formula:"", answer:"Similar chemical properties", options:["Similar chemical properties","Same atomic mass","Same number of electrons","Same number of neutrons"], explain:"Elements in the same group have the same number of valence electrons → similar properties."},
+    {question:"What is an isotope?", formula:"", answer:"Atoms of the same element with different numbers of neutrons", options:["Atoms of the same element with different numbers of neutrons","Atoms with different numbers of protons","Atoms with different numbers of electrons","Different elements with the same mass"], explain:"Isotopes are the same element (same # protons) but with different # of neutrons. Example: Carbon-12 and Carbon-14 are both carbon, just different neutrons."},
+    {question:"Hydrogen has atomic # 1 and mass # 1. How many neutrons does it have?", formula:"H: Atomic # = 1, Mass # = 1", answer:"0", options:["0","1","2","4"], explain:"Neutrons = Mass # − Atomic # = 1 − 1 = 0. Hydrogen is the only element with no neutrons!"},
+    {question:"Which subatomic particle has almost NO mass?", formula:"", answer:"Electrons", options:["Electrons","Protons","Neutrons","Nucleus"], explain:"Electrons are tiny — about 1/1836th the mass of a proton. The mass of an atom is almost entirely from protons and neutrons in the nucleus."},
+    {question:"Calcium has atomic # 20 and mass # 40. How many neutrons?", formula:"Ca: Atomic # = 20, Mass # = 40", answer:"20", options:["20","40","18","22"], explain:"Neutrons = 40 − 20 = 20. Calcium has 20 protons AND 20 neutrons."},
+    {question:"What is the electron configuration of argon?", formula:"Ar, Atomic # = 18", answer:"2, 8, 8", options:["2, 8, 8","2, 8, 7","2, 8, 6","2, 6, 8"], explain:"18 electrons: 2 in shell 1, 8 in shell 2, 8 in shell 3. Argon is a noble gas with a FULL outer shell!"},
+    {question:"How many valence electrons does nitrogen have?", formula:"N, Atomic # = 7", answer:"5", options:["3","4","5","7"], explain:"Nitrogen config: 2, 5. The outer shell has 5 electrons → 5 valence electrons."},
+    {question:"What is the electron configuration of potassium?", formula:"K, Atomic # = 19", answer:"2, 8, 8, 1", options:["2, 8, 8, 1","2, 8, 9","2, 9, 8","2, 8, 1"], explain:"19 electrons: 2 + 8 + 8 + 1. Shell 3 fills to 8 before shell 4 starts. K has 1 valence electron."},
+    {question:"An ion has 11 protons and 10 electrons. What is it?", formula:"", answer:"Na⁺ (sodium ion)", options:["Na⁺ (sodium ion)","Na⁻ (sodium anion)","Mg²⁺","Ne (neutral neon)"], explain:"11 protons = sodium (Na). 11−10 = 1 more proton than electrons → +1 charge → Na⁺."},
+    {question:"What makes one element DIFFERENT from another element?", formula:"", answer:"The number of protons (atomic number)", options:["The number of protons (atomic number)","The number of neutrons","The number of electrons","The mass number"], explain:"The number of protons defines the element. Change the protons → different element entirely!"},
+    {question:"Where are electrons found in an atom?", formula:"", answer:"In energy shells (orbitals) surrounding the nucleus", options:["In energy shells (orbitals) surrounding the nucleus","Inside the nucleus","Between protons and neutrons","Only on the surface"], explain:"Electrons exist in shells or energy levels around the nucleus. They are NOT inside the nucleus."},
+    {question:"What is the maximum number of electrons in the THIRD shell?", formula:"", answer:"8 (for grade 10)", options:["8 (for grade 10)","18","2","6"], explain:"For grade 10, we treat shell 3 as max 8 electrons. (In reality it's 18, but that's higher level chemistry.)"},
+  ]);
+};
+
+// ─── GAME 4: BR Diagram Builder ───────────
+gameBuilders.brbuilder = function() {
+  const elements = [
+    {name:"Hydrogen (H)", num:1, config:[1]},
+    {name:"Helium (He)", num:2, config:[2]},
+    {name:"Lithium (Li)", num:3, config:[2,1]},
+    {name:"Carbon (C)", num:6, config:[2,4]},
+    {name:"Nitrogen (N)", num:7, config:[2,5]},
+    {name:"Oxygen (O)", num:8, config:[2,6]},
+    {name:"Fluorine (F)", num:9, config:[2,7]},
+    {name:"Neon (Ne)", num:10, config:[2,8]},
+    {name:"Sodium (Na)", num:11, config:[2,8,1]},
+    {name:"Magnesium (Mg)", num:12, config:[2,8,2]},
+    {name:"Aluminum (Al)", num:13, config:[2,8,3]},
+    {name:"Silicon (Si)", num:14, config:[2,8,4]},
+    {name:"Phosphorus (P)", num:15, config:[2,8,5]},
+    {name:"Sulfur (S)", num:16, config:[2,8,6]},
+    {name:"Chlorine (Cl)", num:17, config:[2,8,7]},
+    {name:"Argon (Ar)", num:18, config:[2,8,8]},
+    {name:"Potassium (K)", num:19, config:[2,8,8,1]},
+    {name:"Calcium (Ca)", num:20, config:[2,8,8,2]},
+  ];
+  
+  const shuffled = shuffleArr(elements);
+  let idx = 0, sc = 0, tot = 0;
+  
+  function renderBR() {
+    if (idx >= shuffled.length) {
+      const pct = Math.round(sc/tot*100);
+      document.getElementById('game-area').innerHTML = gameHeader() + `<div class="center" style="padding:40px"><div style="font-size:5rem">${pct>=80?'🏆':'📚'}</div><h2 style="font-family:'Rajdhani',sans-serif;font-size:2rem">${pct>=80?'You nailed it!':'Keep practicing!'}</h2><p>Score: ${sc}/${tot} (${pct}%)</p><button class="btn btn-cyan" style="margin-top:20px" onclick="launchGame('brbuilder')">🔄 Play Again</button></div>`;
+      return;
+    }
+    const el = shuffled[idx];
+    const correct = el.config.join(', ');
+    
+    // Generate wrong answers
+    const wrongs = new Set();
+    while (wrongs.size < 3) {
+      const fake = shuffleArr(elements).find(e => e.config.join(',') !== el.config.join(','));
+      if (fake) wrongs.add(fake.config.join(', '));
+    }
+    const opts = shuffleArr([correct, ...wrongs]).slice(0,4);
+    
+    gScore = sc; gTotal = tot;
+    const ga = document.getElementById('game-area');
+    ga.innerHTML = gameHeader() + `
+      <div class="progress-bar"><div class="progress-fill" style="width:${Math.round(idx/shuffled.length*100)}%"></div></div>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:16px">Element ${idx+1}/${shuffled.length}</p>
+      <div class="question-box">
+        <p style="color:var(--muted);margin-bottom:8px">What is the electron configuration of:</p>
+        <div class="question-formula">${el.name}</div>
+        <p style="color:var(--muted);font-size:0.85rem">(Format: Shell 1, Shell 2, Shell 3...)</p>
+      </div>
+      <div class="options-grid" id="brots"></div>
+      <div class="feedback" id="brfb"></div>
+      <div id="brnext" style="display:none;margin-top:12px"><button class="btn btn-cyan" onclick="nextBR()">Next →</button></div>`;
+    
+    const optsEl = document.getElementById('brots');
+    opts.forEach(opt => {
+      const btn = document.createElement('div');
+      btn.className = 'option-btn';
+      btn.innerHTML = `<code style="font-size:1.1rem">${opt}</code>`;
+      btn.onclick = () => {
+        const isCorrect = opt === correct;
+        tot++; if (isCorrect) sc++;
+        gScore = sc; gTotal = tot;
+        document.getElementById('gscore').textContent = sc;
+        document.getElementById('gtotal').textContent = tot;
+        optsEl.querySelectorAll('.option-btn').forEach(b => {
+          b.style.pointerEvents='none';
+          if (b.querySelector('code').textContent === correct) b.classList.add('reveal');
+        });
+        btn.classList.add(isCorrect ? 'correct' : 'wrong');
+        const fb = document.getElementById('brfb');
+        fb.className = 'feedback show ' + (isCorrect ? 'correct-fb' : 'wrong-fb');
+        fb.innerHTML = isCorrect ? `✅ Correct! ${el.name} has ${el.num} electrons: ${correct}` : `❌ The correct config is <strong>${correct}</strong>. Fill shells from inside out: shell 1 max 2, shells 2 & 3 max 8.`;
+        document.getElementById('brnext').style.display = 'block';
+      };
+      optsEl.appendChild(btn);
+    });
+    window.nextBR = () => { idx++; renderBR(); };
+  }
+  renderBR();
+};
+
+// ─── GAME 5: Periodic Trends ──────────────
+gameBuilders.trends = function() {
+  mcGame([
+    {question:"Which group are the Alkali Metals in?", formula:"", answer:"Group 1", options:["Group 1","Group 2","Group 17","Group 18"], explain:"Alkali metals are in Group 1. They are soft, shiny, and VERY reactive."},
+    {question:"Which group are the Halogens in?", formula:"", answer:"Group 17", options:["Group 1","Group 2","Group 17","Group 18"], explain:"Halogens (F, Cl, Br, I, At) are in Group 17. Very reactive non-metals."},
+    {question:"Which group are the Noble Gases in?", formula:"", answer:"Group 18", options:["Group 1","Group 2","Group 17","Group 18"], explain:"Noble gases (He, Ne, Ar, Kr, Xe, Rn) are in Group 18. Very stable."},
+    {question:"Going across a PERIOD (left to right), what happens to the number of electron shells?", formula:"", answer:"Stays the same", options:["Increases","Decreases","Stays the same","Doubles"], explain:"All elements in a period have the SAME number of electron shells. Going DOWN a group adds a shell."},
+    {question:"Going DOWN a GROUP (top to bottom), what changes?", formula:"", answer:"A new electron shell is added", options:["A new electron shell is added","Electrons are removed","Protons decrease","Reactivity always decreases"], explain:"Each period going down adds another orbital/shell for electrons."},
+    {question:"Elements in the same GROUP have similar properties because:", formula:"", answer:"They have the same number of valence electrons", options:["They have the same number of valence electrons","They have the same mass","They are all metals","They have the same number of neutrons"], explain:"Valence electrons determine chemical behavior — same group = same # of valence electrons."},
+    {question:"Where are metals found on the periodic table?", formula:"", answer:"Left side (most of the table)", options:["Left side (most of the table)","Right side only","Along the staircase","Only in Group 1"], explain:"Metals are on the left and center of the periodic table — they're the majority!"},
+    {question:"What is the 'staircase' on the periodic table separating?", formula:"", answer:"Metals from non-metals (with metalloids along the line)", options:["Metals from non-metals (with metalloids along the line)","Gases from solids","Reactive from non-reactive","Alkali from alkaline metals"], explain:"The staircase goes from Boron to Astatine. Metalloids straddle the line."},
+    {question:"Alkali metals (Group 1) have how many valence electrons?", formula:"", answer:"1", options:["1","2","7","8"], explain:"Group 1 = 1 valence electron. That's why they're so reactive — easily give away 1 electron!"},
+    {question:"Halogens (Group 17) have how many valence electrons?", formula:"", answer:"7", options:["1","2","7","8"], explain:"Group 17 = 7 valence electrons. They need just 1 more to be stable — very reactive!"},
+    {question:"Noble gases have how many valence electrons (except He)?", formula:"", answer:"8", options:["0","1","7","8"], explain:"Noble gases have full outer shells (8 valence electrons) → already stable, don't react!"},
+    {question:"Which group's elements are the MOST reactive metals?", formula:"", answer:"Alkali Metals (Group 1)", options:["Alkali Metals (Group 1)","Alkaline Earth Metals (Group 2)","Transition Metals","Halogens (Group 17)"], explain:"Alkali metals have only 1 valence electron they desperately want to give away — very reactive!"},
+    {question:"What are alkaline earth metals? Which group are they in?", formula:"", answer:"Group 2 — less reactive than alkali metals, 2 valence electrons", options:["Group 2 — less reactive than alkali metals, 2 valence electrons","Group 1 — most reactive metals","Group 17 — non-metals","Group 18 — stable gases"], explain:"Group 2 = alkaline earth metals (Be, Mg, Ca, Sr, Ba). They have 2 valence electrons and are reactive, but less than Group 1."},
+    {question:"Which of these is a metalloid (semi-metal)?", formula:"", answer:"Silicon (Si)", options:["Silicon (Si)","Sodium (Na)","Sulfur (S)","Neon (Ne)"], explain:"Metalloids (like Si, Ge, As) sit along the staircase on the table. They have properties of BOTH metals and non-metals."},
+    {question:"Going DOWN Group 1 (Li → Na → K → Rb), reactivity:", formula:"", answer:"Increases (gets MORE reactive going down)", options:["Increases (gets MORE reactive going down)","Decreases","Stays the same","Alternates between more and less reactive"], explain:"Going down Group 1, each atom is bigger. The outermost electron is farther from the nucleus (less attracted) → lost more easily → more reactive!"},
+    {question:"What group number do elements with 2 valence electrons belong to?", formula:"", answer:"Group 2", options:["Group 2","Group 12","Group 8","Group 1"], explain:"The group number tells you the number of valence electrons for main group elements (Groups 1, 2, 13–18). Group 2 = 2 valence electrons."},
+    {question:"How many valence electrons does a Group 16 element have?", formula:"Examples: O, S, Se", answer:"6", options:["2","4","6","8"], explain:"Group 16 elements (oxygen, sulfur, selenium) all have 6 valence electrons. They need 2 more to reach 8."},
+    {question:"Which period (row) is sodium (Na) in?", formula:"Na: Atomic # = 11", answer:"Period 3", options:["Period 1","Period 2","Period 3","Period 4"], explain:"Period 3 contains Na, Mg, Al, Si, P, S, Cl, Ar. Na has 3 electron shells → Period 3."},
+    {question:"What increases as you go DOWN a group?", formula:"", answer:"Number of electron shells", options:["Number of electron shells","Reactivity of all elements","Number of valence electrons","Atomic number only"], explain:"Each new row going down adds a NEW electron shell. Period 1 = 1 shell, Period 2 = 2 shells, Period 3 = 3 shells, etc."},
+    {question:"Transition metals are found in which part of the periodic table?", formula:"", answer:"Middle block (Groups 3-12)", options:["Middle block (Groups 3-12)","Far left (Group 1)","Far right (Group 18)","Along the staircase"], explain:"Transition metals occupy the wide middle section. Examples: Fe, Cu, Zn, Au, Ag, Ni."},
+    {question:"Why are halogens (Group 17) so reactive?", formula:"", answer:"They have 7 valence electrons and desperately need 1 more to be stable", options:["They have 7 valence electrons and desperately need 1 more to be stable","They have too many electrons","They are very large atoms","They are metals"], explain:"Group 17 needs just 1 more electron to achieve a full octet of 8 — they'll aggressively grab electrons from other atoms!"},
+  ]);
+};
+
+// ─── GAME 6: Ionic vs Molecular Sorter ────
+gameBuilders.ionicvsmolecular = function() {
+  mcGame([
+    {question:"What type of bond is this compound?", formula:"NaCl", answer:"Ionic", options:["Ionic","Molecular/Covalent"], explain:"NaCl = sodium (metal) + chlorine (non-metal) → ionic bond with electron TRANSFER."},
+    {question:"What type of bond is this compound?", formula:"H₂O", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"H₂O = two non-metals (H and O) → covalent bond with electron SHARING."},
+    {question:"What type of bond is this compound?", formula:"CO₂", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"CO₂ = carbon + oxygen (both non-metals) → covalent bond."},
+    {question:"What type of bond is this compound?", formula:"CaCl₂", answer:"Ionic", options:["Ionic","Molecular/Covalent"], explain:"Ca (metal) + Cl (non-metal) → ionic compound."},
+    {question:"What type of bond is this compound?", formula:"NH₃", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"N and H are both non-metals → covalent bond (sharing electrons)."},
+    {question:"What type of bond is this compound?", formula:"MgO", answer:"Ionic", options:["Ionic","Molecular/Covalent"], explain:"Mg (metal) + O (non-metal) → ionic bond."},
+    {question:"What type of bond is this compound?", formula:"SO₃", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"S and O are both non-metals → covalent/molecular compound."},
+    {question:"What type of bond is this compound?", formula:"Al₂O₃", answer:"Ionic", options:["Ionic","Molecular/Covalent"], explain:"Al (metal) + O (non-metal) → ionic bond."},
+    {question:"What type of bond is this compound?", formula:"PCl₅", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"P and Cl are both non-metals → covalent bond."},
+    {question:"An ionic compound conducts electricity when dissolved in water because:", formula:"", answer:"It releases ions (charged particles) into solution", options:["It releases ions (charged particles) into solution","It heats up","It changes color","Electrons flow through it directly"], explain:"Ionic compounds are electrolytes — they split into ions in water, and ions carry charge."},
+    {question:"A molecular compound generally:", formula:"", answer:"Does NOT conduct electricity (non-electrolyte)", options:["Does NOT conduct electricity (non-electrolyte)","Conducts electricity well","Always forms gases","Has a very high melting point"], explain:"Molecular compounds share electrons — no ions are released, so they don't conduct electricity."},
+    {question:"What type of bond involves ELECTRON TRANSFER?", formula:"", answer:"Ionic bond", options:["Ionic bond","Covalent/Molecular bond","Both","Neither"], explain:"In ionic bonds, one atom gives electrons to another (metal gives to non-metal)."},
+    {question:"What type of bond involves ELECTRON SHARING?", formula:"", answer:"Covalent/Molecular bond", options:["Ionic bond","Covalent/Molecular bond","Both","Neither"], explain:"In covalent bonds, electrons are shared between two non-metals."},
+    {question:"What type of bond is this compound?", formula:"KBr", answer:"Ionic", options:["Ionic","Molecular/Covalent"], explain:"K (metal) + Br (non-metal) → ionic bond."},
+    {question:"What type of bond is this compound?", formula:"CH₄", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"C and H are both non-metals → covalent bond. Methane is a molecular compound."},
+    {question:"What type of bond is this compound?", formula:"ZnS", answer:"Ionic", options:["Ionic","Molecular/Covalent"], explain:"Zn (transition metal) + S (non-metal) → ionic bond."},
+    {question:"What type of bond is this compound?", formula:"HCl", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"H and Cl are both non-metals → covalent bond. HCl(g) is molecular. Note: HCl(aq) ionizes in water, but the pure compound is covalent."},
+    {question:"What type of bond is this compound?", formula:"Li₂O", answer:"Ionic", options:["Ionic","Molecular/Covalent"], explain:"Li (alkali metal) + O (non-metal) → ionic bond."},
+    {question:"What type of bond is this compound?", formula:"N₂O", answer:"Molecular/Covalent", options:["Ionic","Molecular/Covalent"], explain:"N and O are both non-metals → covalent/molecular bond."},
+    {question:"Ionic compounds usually have _____ melting points compared to molecular compounds.", formula:"", answer:"Higher", options:["Higher","Lower","The same","Impossible to compare"], explain:"Ionic compounds form strong crystal lattices — it takes a LOT of energy to break them apart. Molecular compounds have weaker forces between molecules."},
+    {question:"Which property do ionic compounds have that most molecular compounds do NOT?", formula:"", answer:"Ability to conduct electricity when dissolved in water", options:["Ability to conduct electricity when dissolved in water","Having a colour","Being a solid at room temperature","Having a chemical formula"], explain:"When dissolved, ionic compounds release ions (charged particles) that carry electric current. Molecular compounds don't release ions."},
+  ]);
+};
+
+// ─── GAME 7: Ion Formation ─────────────────
+gameBuilders.ionformation = function() {
+  mcGame([
+    {question:"Sodium (Na) forms an ion. What is its charge?", formula:"Na: 11 protons, Group 1", answer:"Na⁺ (loses 1 electron)", options:["Na⁺ (loses 1 electron)","Na⁻ (gains 1 electron)","Na²⁺ (loses 2 electrons)","Na stays neutral"], explain:"Na has 1 valence electron. It's easier to lose 1 than gain 7 → Na⁺ (cation)."},
+    {question:"Chlorine (Cl) forms an ion. What is its charge?", formula:"Cl: Group 17, 7 valence electrons", answer:"Cl⁻ (gains 1 electron)", options:["Cl⁻ (gains 1 electron)","Cl⁺ (loses 1 electron)","Cl²⁻ (gains 2 electrons)","Cl stays neutral"], explain:"Cl needs 1 more electron to fill its shell → gains 1 → Cl⁻ (anion)."},
+    {question:"What is the name of the ion formed by oxygen?", formula:"O²⁻", answer:"Oxide ion", options:["Oxide ion","Oxygen ion","Oxid ion","Oxygenide ion"], explain:"Non-metal anions change their ending to -ide. Oxygen → oxide."},
+    {question:"Magnesium (Mg) forms an ion. What is its charge?", formula:"Mg: Group 2, 2 valence electrons", answer:"Mg²⁺", options:["Mg²⁺","Mg⁻","Mg⁺","Mg²⁻"], explain:"Mg has 2 valence electrons → loses both → Mg²⁺. Group 2 = +2 charge."},
+    {question:"What is a CATION?", formula:"", answer:"A positively charged ion (lost electrons)", options:["A positively charged ion (lost electrons)","A negatively charged ion (gained electrons)","A neutral atom","A diatomic molecule"], explain:"Cation = positive ion. Cat-ions are posi-TIVE! Metals form cations."},
+    {question:"What is an ANION?", formula:"", answer:"A negatively charged ion (gained electrons)", options:["A negatively charged ion (gained electrons)","A positively charged ion","A neutral atom","An ion with no charge"], explain:"Anion = negative ion. Non-metals form anions by gaining electrons."},
+    {question:"Aluminum (Al) forms an ion. What is its charge?", formula:"Al: Group 13, 3 valence electrons", answer:"Al³⁺", options:["Al³⁺","Al⁻","Al²⁺","Al³⁻"], explain:"Al has 3 valence electrons → loses all 3 → Al³⁺."},
+    {question:"Fluorine forms an ion. What is its name?", formula:"F⁻", answer:"Fluoride", options:["Fluoride","Fluorine ion","Fluor","Fluorinate"], explain:"Non-metals ending in -ine → change to -ide. Fluorine → fluoride."},
+    {question:"Sulfur (S) forms an ion. What is its charge?", formula:"S: Group 16, 6 valence electrons", answer:"S²⁻", options:["S²⁻","S²⁺","S⁻","S⁶⁺"], explain:"S has 6 valence electrons → gains 2 to complete the octet → S²⁻."},
+    {question:"Why do atoms form ions?", formula:"", answer:"To achieve a stable, full outer electron shell (octet)", options:["To achieve a stable, full outer electron shell (octet)","To increase their mass","To change their atomic number","To become a different element"], explain:"The octet rule drives ion formation — atoms react to get 8 valence electrons (noble gas config)."},
+    {question:"Potassium (K) forms an ion. What is its charge?", formula:"K: Group 1, 1 valence electron", answer:"K⁺", options:["K⁺","K⁻","K²⁺","K²⁻"], explain:"K has 1 valence electron → loses it → K⁺. All Group 1 metals form +1 ions."},
+    {question:"Calcium (Ca) forms an ion. What is its charge?", formula:"Ca: Group 2, 2 valence electrons", answer:"Ca²⁺", options:["Ca²⁺","Ca⁺","Ca²⁻","Ca³⁺"], explain:"Ca has 2 valence electrons → loses both → Ca²⁺. All Group 2 metals form +2 ions."},
+    {question:"What is the name of the ion S²⁻?", formula:"", answer:"Sulfide", options:["Sulfide","Sulfate","Sulfite","Sulfur ion"], explain:"Sulfur (non-metal) gains 2 electrons → S²⁻. Non-metal anions change their ending to -ide. Sulfur → sulfide."},
+    {question:"Nitrogen forms an ion. What is its charge?", formula:"N: Group 15, 5 valence electrons", answer:"N³⁻", options:["N³⁻","N³⁺","N⁻","N⁵⁺"], explain:"N needs 3 more electrons to reach 8 → gains 3 → N³⁻ (nitride ion)."},
+    {question:"Phosphorus forms an ion. What is its charge?", formula:"P: Group 15, 5 valence electrons", answer:"P³⁻", options:["P³⁻","P³⁺","P⁵⁺","P⁻"], explain:"P also needs 3 electrons to fill its outer shell → P³⁻ (phosphide ion). Same group as N."},
+    {question:"If an ion has a charge of 2−, it means the atom:", formula:"", answer:"Gained 2 electrons", options:["Gained 2 electrons","Lost 2 electrons","Lost 2 protons","Gained 2 protons"], explain:"Negative charge means MORE electrons than protons. Gaining 2 electrons adds 2 negative charges → 2− ion."},
+    {question:"Iron (Fe) can form two different ions. They are:", formula:"", answer:"Fe²⁺ and Fe³⁺", options:["Fe²⁺ and Fe³⁺","Fe⁺ and Fe²⁺","Fe³⁺ and Fe⁴⁺","Fe⁻ and Fe²⁻"], explain:"Iron is a multivalent metal — it can lose 2 OR 3 electrons. Fe²⁺ = iron(II), Fe³⁺ = iron(III)."},
+    {question:"Copper (Cu) can also form two ions. What naming system do we use?", formula:"", answer:"Roman numerals: Cu⁺ = Copper(I), Cu²⁺ = Copper(II)", options:["Roman numerals: Cu⁺ = Copper(I), Cu²⁺ = Copper(II)","Greek prefixes","The -ous/-ic suffix system","Just guess from the formula"], explain:"Multivalent metals (like Fe, Cu, Pb) need Roman numerals in brackets to show which ion they formed."},
+  ]);
+};
+
+// ─── GAME 8: Ionic Naming ─────────────────
+gameBuilders.ionicnaming = function() {
+  mcGame([
+    {question:"Name this ionic compound:", formula:"NaCl", answer:"Sodium chloride", options:["Sodium chloride","Sodium chlorine","Natrium chloride","Sodium(I) chloride"], explain:"Na is sodium (metal keeps its name). Cl becomes chlor-IDE."},
+    {question:"Name this ionic compound:", formula:"MgO", answer:"Magnesium oxide", options:["Magnesium oxide","Magnesium oxygen","Dimagnesium oxide","Magnesium(II) oxide"], explain:"Mg is magnesium. O becomes ox-IDE. Mg always forms Mg²⁺ (not multivalent)."},
+    {question:"Name this ionic compound:", formula:"FeCl₂", answer:"Iron(II) chloride", options:["Iron(II) chloride","Iron(III) chloride","Iron chloride","Ferrous chloride only"], explain:"Fe is multivalent. With 2 Cl (each −1), Fe must be +2. Add Roman numeral (II)."},
+    {question:"Name this ionic compound:", formula:"FeCl₃", answer:"Iron(III) chloride", options:["Iron(III) chloride","Iron(II) chloride","Iron chloride","Iron tri-chloride"], explain:"3 Cl at −1 each = −3 total, so Fe must be +3. Iron(III) chloride."},
+    {question:"Name this ionic compound:", formula:"Ca(OH)₂", answer:"Calcium hydroxide", options:["Calcium hydroxide","Calcium dihydroxide","Calcium(II) hydroxide","Calcium hydrox"], explain:"Ca²⁺ + OH⁻ polyatomic ion. Polyatomic ions keep their name (hydroxide)."},
+    {question:"Name this ionic compound:", formula:"Na₂SO₄", answer:"Sodium sulfate", options:["Sodium sulfate","Sodium sulfide","Sodium(I) sulfate","Disodium sulfate"], explain:"Na⁺ + SO₄²⁻ (sulfate polyatomic ion). Just say sodium sulfate."},
+    {question:"Name this ionic compound:", formula:"Cu(NO₃)₂", answer:"Copper(II) nitrate", options:["Copper(II) nitrate","Copper(I) nitrate","Copper nitrate","Copper dinitrate"], explain:"NO₃⁻ has charge −1. Two of them = −2 total. So Cu = +2. Copper(II) nitrate."},
+    {question:"Name this ionic compound:", formula:"(NH₄)₂CO₃", answer:"Ammonium carbonate", options:["Ammonium carbonate","Nitrogen carbonate","Ammonium carbon oxide","Ammonium(II) carbonate"], explain:"NH₄⁺ is ammonium (+1). CO₃²⁻ is carbonate. Ammonium carbonate."},
+    {question:"Name this ionic compound:", formula:"Al₂O₃", answer:"Aluminum oxide", options:["Aluminum oxide","Aluminum(III) oxide","Dialuminum trioxide","Aluminum trioxide"], explain:"Al always forms Al³⁺. O is always O²⁻. Al is NOT multivalent, so no Roman numerals needed."},
+    {question:"Name this ionic compound:", formula:"Pb(NO₃)₂", answer:"Lead(II) nitrate", options:["Lead(II) nitrate","Lead(IV) nitrate","Lead nitrate","Lead(II) nitrogen"], explain:"Lead is multivalent (2+ or 4+). Two NO₃⁻ (−2 total) → Pb²⁺ → Lead(II) nitrate."},
+    {question:"What is the formula for calcium chloride?", formula:"Ca²⁺ + Cl⁻", answer:"CaCl₂", options:["CaCl₂","CaCl","Ca₂Cl","CaCl₃"], explain:"Criss-cross: Ca(2+) and Cl(1−) → Ca₁Cl₂ → CaCl₂. Need 2 chlorines to balance calcium's 2+ charge."},
+    {question:"What is the formula for iron(III) oxide?", formula:"Fe³⁺ + O²⁻", answer:"Fe₂O₃", options:["Fe₂O₃","FeO","FeO₃","Fe₃O₂"], explain:"Criss-cross Fe³⁺ and O²⁻ → Fe₂O₃. Total charge: 2(+3) + 3(−2) = +6 − 6 = 0 ✓"},
+    {question:"What is the formula for magnesium phosphate?", formula:"Mg²⁺ + PO₄³⁻", answer:"Mg₃(PO₄)₂", options:["Mg₃(PO₄)₂","MgPO₄","Mg₂PO₄","Mg(PO₄)₂"], explain:"Criss-cross Mg(2) and PO₄(3) → Mg₃(PO₄)₂. Put polyatomic in brackets with subscript outside."},
+    {question:"Which metal does NOT need a Roman numeral when naming?", formula:"", answer:"Magnesium (Mg) — always 2+", options:["Magnesium (Mg) — always 2+","Iron (Fe)","Copper (Cu)","Lead (Pb)"], explain:"Magnesium always forms Mg²⁺ — it's not multivalent. Fe, Cu, Pb can have multiple charges."},
+    {question:"Name this ionic compound:", formula:"K₂O", answer:"Potassium oxide", options:["Potassium oxide","Potassium(I) oxide","Dipotassium oxide","Potassium monoxide"], explain:"K is potassium (always K⁺, not multivalent). O becomes oxide. Potassium oxide."},
+    {question:"Name this ionic compound:", formula:"CuO", answer:"Copper(II) oxide", options:["Copper(II) oxide","Copper(I) oxide","Copper oxide","Cupric oxide"], explain:"O is O²⁻ (−2). One Cu balances 2− → Cu must be +2. Roman numeral (II) needed → Copper(II) oxide."},
+    {question:"Name this ionic compound:", formula:"Cu₂O", answer:"Copper(I) oxide", options:["Copper(I) oxide","Copper(II) oxide","Dicopper oxide","Copper oxide"], explain:"O is O²⁻. Two Cu atoms balance it: 2 × Cu = +2, so each Cu = +1. Copper(I) oxide."},
+    {question:"Name this ionic compound:", formula:"PbO₂", answer:"Lead(IV) oxide", options:["Lead(IV) oxide","Lead(II) oxide","Lead dioxide","Lead(II) peroxide"], explain:"2 oxygen atoms = 2 × (−2) = −4 total. Pb must be +4. Lead(IV) oxide."},
+    {question:"Name this ionic compound:", formula:"CaCO₃", answer:"Calcium carbonate", options:["Calcium carbonate","Calcium carbon oxide","Calcium(II) carbonate","Calcite carbonate"], explain:"Ca²⁺ + CO₃²⁻ (carbonate polyatomic). Ca is not multivalent. Calcium carbonate."},
+    {question:"Name this ionic compound:", formula:"Fe₂(SO₄)₃", answer:"Iron(III) sulfate", options:["Iron(III) sulfate","Iron(II) sulfate","Diiron trisulfate","Iron sulfate"], explain:"SO₄²⁻ × 3 = −6 total. 2 Fe must = +6 total → each Fe = +3. Iron(III) sulfate."},
+    {question:"Name this ionic compound:", formula:"NH₄Cl", answer:"Ammonium chloride", options:["Ammonium chloride","Nitrogen chloride","Ammonium(I) chloride","Ammonium hydrochloride"], explain:"NH₄⁺ = ammonium (+1). Cl⁻ = chloride (−1). Ammonium chloride."},
+    {question:"What is the formula for sodium carbonate?", formula:"Na⁺ + CO₃²⁻", answer:"Na₂CO₃", options:["Na₂CO₃","NaCO₃","Na(CO₃)₂","Na₂CO₄"], explain:"Na⁺ (+1) + CO₃²⁻ (−2). Criss-cross: Na₂(CO₃)₁ = Na₂CO₃."},
+    {question:"What is the formula for zinc sulfide?", formula:"Zn²⁺ + S²⁻", answer:"ZnS", options:["ZnS","Zn₂S₂","ZnS₂","Zn₂S"], explain:"Criss-cross Zn(2) and S(2) → Zn₂S₂ → simplify → ZnS. Always reduce to lowest terms!"},
+    {question:"Which is the correct name for FeS?", formula:"", answer:"Iron(II) sulfide", options:["Iron(II) sulfide","Iron(III) sulfide","Iron sulfide","Ferrous sulfide"], explain:"S²⁻ has −2 charge. One Fe balances it → Fe must be +2. Iron(II) sulfide."},
+  ]);
+};
+
+// ─── GAME 9: Molecular Naming ─────────────
+gameBuilders.molecularnaming = function() {
+  mcGame([
+    {question:"Name this molecular compound:", formula:"CO₂", answer:"Carbon dioxide", options:["Carbon dioxide","Carbon(II) oxide","Dicarbon oxide","Monocarbon dioxide"], explain:"C (1, no prefix needed as first element) + O₂ (di-). Carbon dioxide."},
+    {question:"Name this molecular compound:", formula:"CO", answer:"Carbon monoxide", options:["Carbon monoxide","Carbon oxide","Monocarbon monoxide","Carbon(I) oxide"], explain:"CO: C has 1 (no prefix), O has 1 → mono goes on the second element. Carbon monoxide."},
+    {question:"Name this molecular compound:", formula:"N₂O₄", answer:"Dinitrogen tetroxide", options:["Dinitrogen tetroxide","Nitrogen(II) oxide","Dinitrogen quadoxide","Nitrogen dioxide"], explain:"N₂ = di-nitrogen. O₄ = tetr-oxide (tetra). Dinitrogen tetroxide."},
+    {question:"Name this molecular compound:", formula:"PCl₅", answer:"Phosphorus pentachloride", options:["Phosphorus pentachloride","Phosphorus(V) chloride","Phosphorus pentchloride","Pentaphosphorus chloride"], explain:"P (1, no prefix), Cl₅ (penta). Phosphorus pentachloride."},
+    {question:"Name this molecular compound:", formula:"SO₃", answer:"Sulfur trioxide", options:["Sulfur trioxide","Sulfur(III) oxide","Disulfur trioxide","Sulfur oxide"], explain:"S (1, no prefix), O₃ (tri). Sulfur trioxide."},
+    {question:"Name this molecular compound:", formula:"N₂O", answer:"Dinitrogen monoxide", options:["Dinitrogen monoxide","Nitrogen(I) oxide","Dinitrogen oxide","Nitrogen monoxide"], explain:"N₂ (di), O₁ (mono). Dinitrogen monoxide (also called laughing gas!)."},
+    {question:"What is the formula for sulfur hexafluoride?", formula:"", answer:"SF₆", options:["SF₆","S₆F","S₆F₆","SF₂"], explain:"Sulfur (1) + hexa (6) fluoride. SF₆."},
+    {question:"What is the formula for diphosphorus pentoxide?", formula:"", answer:"P₂O₅", options:["P₂O₅","PO₅","P₅O₂","P₂O₃"], explain:"Di-phosphorus (2) + pent-oxide (5). P₂O₅."},
+    {question:"What is the formula for carbon tetrachloride?", formula:"", answer:"CCl₄", options:["CCl₄","C₄Cl","CCl","C₄Cl₄"], explain:"Carbon (1, no prefix) + tetra (4) chloride. CCl₄."},
+    {question:"Which rule applies when naming molecular compounds?", formula:"", answer:"Use Greek number prefixes", options:["Use Greek number prefixes","Use Roman numerals in brackets","Use -ide for ALL elements","Name only the first element"], explain:"Molecular compounds use Greek prefixes (mono, di, tri...) because non-metals can combine in many ratios."},
+    {question:"When do you NOT use 'mono' as a prefix?", formula:"", answer:"When it applies to the FIRST element", options:["When it applies to the FIRST element","When it applies to the second element","Never use mono","Always use mono for 1"], explain:"'Mono' is skipped for the first element. CO = carbon monoxide (NOT monocarbon monoxide)."},
+    {question:"What is the formula for nitrogen dioxide?", formula:"", answer:"NO₂", options:["NO₂","N₂O","NO","N₂O₂"], explain:"Nitrogen (1, no prefix needed) + di (2) oxide. NO₂."},
+    {question:"Name this molecular compound:", formula:"Cl₂O₇", answer:"Dichlorine heptoxide", options:["Dichlorine heptoxide","Dichlorine heptaoxide","Chlorine heptoxide","Dichlorine oxide"], explain:"Cl₂ = di, O₇ = hepta. Dichlorine heptoxide. (Hepta = 7, not 'hexa')"},
+    {question:"Name this molecular compound:", formula:"SiO₂", answer:"Silicon dioxide", options:["Silicon dioxide","Monosilicon dioxide","Silicon(II) oxide","Silicon oxide"], explain:"Si (1, skip mono on first element), O₂ = di. Silicon dioxide. (This is also called quartz or sand!)"},
+    {question:"What is the formula for iodine monochloride?", formula:"", answer:"ICl", options:["ICl","ICl₂","I₂Cl","I₂Cl₂"], explain:"Iodine (1, no prefix since it's first) + mono (1) chloride = ICl."},
+    {question:"What is the Greek prefix for 4?", formula:"", answer:"Tetra-", options:["Tetra-","Quad-","Penta-","Tri-"], explain:"Greek prefixes: 1=mono, 2=di, 3=tri, 4=tetra, 5=penta, 6=hexa, 7=hepta, 8=octa."},
+    {question:"Name this molecular compound:", formula:"As₂S₃", answer:"Diarsenic trisulfide", options:["Diarsenic trisulfide","Arsenic(III) sulfide","Arsenic trisulfide","Diarsenic sulfide"], explain:"As₂ = di-arsenic. S₃ = tri-sulfide. Diarsenic trisulfide. Non-metal + non-metal = use prefixes!"},
+    {question:"Why do molecular compounds use Greek prefixes instead of Roman numerals?", formula:"", answer:"Non-metals can combine in many different ratios, so we need to show the exact number of each atom", options:["Non-metals can combine in many different ratios, so we need to show the exact number of each atom","Roman numerals only work for metals","Greek prefixes are older and more traditional","Non-metals have no charge"], explain:"CO and CO₂ are both carbon+oxygen, but very different compounds. Prefixes tell us exactly how many of each atom is present."},
+    {question:"What is the formula for dinitrogen tetroxide?", formula:"", answer:"N₂O₄", options:["N₂O₄","NO₄","N₄O₂","N₂O₃"], explain:"Di = 2 nitrogen, tetr(a) = 4 oxide. N₂O₄."},
+    {question:"Name this molecular compound:", formula:"XeF₄", answer:"Xenon tetrafluoride", options:["Xenon tetrafluoride","Xenon(IV) fluoride","Tetraxenon fluoride","Xenon fluoride"], explain:"Xe is a noble gas but CAN form compounds in rare cases. Xe (1, no prefix) + F₄ (tetra). Xenon tetrafluoride."},
+  ]);
+};
+
+// ─── GAME 10: Acid Naming ─────────────────
+gameBuilders.acidnaming = function() {
+  mcGame([
+    {question:"Name this binary acid:", formula:"HCl(aq)", answer:"Hydrochloric acid", options:["Hydrochloric acid","Hydrochloride acid","Chloric acid","Hydrogen chloride acid"], explain:"Binary acid: hydro + chlor (root of chlorine) + ic acid = hydrochloric acid."},
+    {question:"Name this binary acid:", formula:"HBr(aq)", answer:"Hydrobromic acid", options:["Hydrobromic acid","Bromous acid","Bromic acid","Hydrobromide acid"], explain:"Hydro + brom (root of bromine) + ic acid = hydrobromic acid."},
+    {question:"Name this binary acid:", formula:"HF(aq)", answer:"Hydrofluoric acid", options:["Hydrofluoric acid","Fluoric acid","Fluorine acid","Hydrofluoride acid"], explain:"Hydro + fluor (root of fluorine) + ic acid = hydrofluoric acid."},
+    {question:"Name this binary acid:", formula:"H₂S(aq)", answer:"Hydrosulfuric acid", options:["Hydrosulfuric acid","Hydrogen sulfide","Sulfuric acid","Sulfurous acid"], explain:"Hydro + sulfur (root) + ic acid = hydrosulfuric acid."},
+    {question:"Name this oxyacid:", formula:"H₂SO₄", answer:"Sulfuric acid", options:["Sulfuric acid","Sulfurous acid","Hydrosulfuric acid","Sulfate acid"], explain:"Based on SULFATE (SO₄²⁻, an -ate ion). -ate → -ic acid. Sulfuric acid."},
+    {question:"Name this oxyacid:", formula:"H₂SO₃", answer:"Sulfurous acid", options:["Sulfurous acid","Sulfuric acid","Hyposulfurous acid","Persulfuric acid"], explain:"Based on SULFITE (SO₃²⁻, an -ite ion). -ite → -ous acid. Sulfurous acid."},
+    {question:"Name this oxyacid:", formula:"HNO₃", answer:"Nitric acid", options:["Nitric acid","Nitrous acid","Hydronitic acid","Nitrate acid"], explain:"Based on NITRATE (NO₃⁻, an -ate ion). -ate → -ic acid. Nitric acid."},
+    {question:"Name this oxyacid:", formula:"HNO₂", answer:"Nitrous acid", options:["Nitrous acid","Nitric acid","Hydronitrous acid","Nitrite acid"], explain:"Based on NITRITE (NO₂⁻, an -ite ion). -ite → -ous acid. Nitrous acid."},
+    {question:"Name this oxyacid:", formula:"HClO₄", answer:"Perchloric acid", options:["Perchloric acid","Perchlorite acid","Chloric acid","Perchlorous acid"], explain:"Based on PERCHLORATE (ClO₄⁻, per-ate). Per-ate → per-ic acid. Perchloric acid."},
+    {question:"Name this oxyacid:", formula:"HClO", answer:"Hypochlorous acid", options:["Hypochlorous acid","Hypochlorite acid","Chloric acid","Hypochloric acid"], explain:"Based on HYPOCHLORITE (ClO⁻, hypo-ite). Hypo-ite → hypo-ous acid. Hypochlorous acid."},
+    {question:"Name this oxyacid:", formula:"H₃PO₄", answer:"Phosphoric acid", options:["Phosphoric acid","Phosphorous acid","Hydrophosphoric acid","Phosphate acid"], explain:"Based on PHOSPHATE (PO₄³⁻, an -ate ion). -ate → -ic acid. Phosphoric acid."},
+    {question:"What is the formula for hydrochloric acid?", formula:"(HCl dissolved in water)", answer:"HCl(aq)", options:["HCl(aq)","H₂Cl","HClO₃(aq)","HCl₂(aq)"], explain:"Hydrochloric acid: H⁺ balances Cl⁻ (charge 1−). So just HCl(aq)."},
+    {question:"The -ate oxyanion produces which type of acid suffix?", formula:"", answer:"-ic acid", options:["-ic acid","-ous acid","hydro-ic acid","per-ic acid"], explain:"-ate ions → -ic acid. E.g., sulfate → sulfuric acid, nitrate → nitric acid."},
+    {question:"The -ite oxyanion produces which type of acid suffix?", formula:"", answer:"-ous acid", options:["-ous acid","-ic acid","hydro-ous acid","-ite acid"], explain:"-ite ions → -ous acid. E.g., sulfite → sulfurous acid, nitrite → nitrous acid."},
+    {question:"Name this binary acid:", formula:"HI(aq)", answer:"Hydroiodic acid", options:["Hydroiodic acid","Iodic acid","Hydroiodide acid","Hydrogen iodide acid"], explain:"Hydro + iod (root of iodine) + ic acid = hydroiodic acid."},
+    {question:"Name this oxyacid:", formula:"H₂CO₃", answer:"Carbonic acid", options:["Carbonic acid","Carbous acid","Hydrogen carbonate","Carbonate acid"], explain:"Based on CARBONATE (CO₃²⁻, an -ate ion). -ate → -ic acid. Carbonic acid."},
+    {question:"Name this oxyacid:", formula:"H₃PO₃", answer:"Phosphorous acid", options:["Phosphorous acid","Phosphoric acid","Hydrophosphoric acid","Phosphite acid"], explain:"Based on PHOSPHITE (PO₃³⁻, an -ite ion). -ite → -ous acid. Phosphorous acid."},
+    {question:"What is the formula for nitrous acid?", formula:"", answer:"HNO₂", options:["HNO₂","HNO₃","H₂NO₂","HN₂O"], explain:"Nitrous acid comes from nitrite (NO₂⁻). H⁺ + NO₂⁻ = HNO₂."},
+    {question:"What two types of acids are there?", formula:"", answer:"Binary acids (H + nonmetal) and oxyacids (H + polyatomic ion with oxygen)", options:["Binary acids (H + nonmetal) and oxyacids (H + polyatomic ion with oxygen)","Strong acids and weak acids","Ionic acids and molecular acids","Solid acids and liquid acids"], explain:"Binary acids: H + one non-metal (like HCl, HBr). Oxyacids: H + a polyatomic ion containing oxygen (like H₂SO₄, HNO₃)."},
+    {question:"The formula H₂SO₄ is dissolved in water. What type of acid is it?", formula:"", answer:"Oxyacid (contains oxygen in the polyatomic ion)", options:["Oxyacid (contains oxygen in the polyatomic ion)","Binary acid","Hydro acid","Neutral compound"], explain:"H₂SO₄ has SO₄²⁻ (sulfate). Since the anion contains oxygen, it's an oxyacid. No 'hydro-' prefix!"},
+    {question:"Acids all start with H in their formula. What does H produce in water?", formula:"", answer:"H⁺ ions (hydrogen ions)", options:["H⁺ ions (hydrogen ions)","OH⁻ ions","Na⁺ ions","H₂O only"], explain:"Acids release H⁺ (hydrogen ions) in solution. The more H⁺ released, the stronger the acid."},
+    {question:"What is the formula for phosphoric acid?", formula:"", answer:"H₃PO₄", options:["H₃PO₄","HPO₄","H₂PO₄","H₃PO₃"], explain:"Phosphoric acid comes from phosphate (PO₄³⁻, charge −3). Need 3 H⁺ to balance. H₃PO₄."},
+  ]);
+};
+
+// ─── GAME 11: Formula Writing ──────────────
+gameBuilders.formulawriting = function() {
+  mcGame([
+    {question:"Write the formula for:", formula:"Potassium iodide", answer:"KI", options:["KI","K₂I","KI₂","K₂I₂"], explain:"K⁺ + I⁻. Charges: +1 and −1. Criss-cross (both 1), simplify → KI."},
+    {question:"Write the formula for:", formula:"Calcium chloride", answer:"CaCl₂", options:["CaCl₂","CaCl","Ca₂Cl","Ca₂Cl₂"], explain:"Ca²⁺ + Cl⁻. Criss-cross → Ca₁Cl₂ → CaCl₂."},
+    {question:"Write the formula for:", formula:"Aluminum oxide", answer:"Al₂O₃", options:["Al₂O₃","AlO","AlO₃","Al₃O₂"], explain:"Al³⁺ + O²⁻. Criss-cross → Al₂O₃. Check: 2(+3) + 3(−2) = 0 ✓"},
+    {question:"Write the formula for:", formula:"Iron(III) sulfate", answer:"Fe₂(SO₄)₃", options:["Fe₂(SO₄)₃","FeSO₄","Fe₃(SO₄)₂","Fe(SO₄)₃"], explain:"Fe³⁺ + SO₄²⁻. Criss-cross: Fe₂(SO₄)₃. Check: 2(+3) + 3(−2) = 0 ✓"},
+    {question:"Write the formula for:", formula:"Ammonium sulfate", answer:"(NH₄)₂SO₄", options:["(NH₄)₂SO₄","NH₄SO₄","(NH₄)SO₄","NH₄SO₄₂"], explain:"NH₄⁺ (+1) + SO₄²⁻ (−2). Criss-cross: (NH₄)₂SO₄."},
+    {question:"Write the formula for:", formula:"Sodium hydroxide", answer:"NaOH", options:["NaOH","Na(OH)₂","Na₂OH","NaOH₂"], explain:"Na⁺ (+1) + OH⁻ (−1). Both charge 1 → NaOH (no brackets needed)."},
+    {question:"Write the formula for:", formula:"Copper(II) nitrate", answer:"Cu(NO₃)₂", options:["Cu(NO₃)₂","CuNO₃","Cu₂(NO₃)","Cu(NO₃)"], explain:"Cu²⁺ + NO₃⁻ (−1). Criss-cross: Cu(NO₃)₂."},
+    {question:"Write the formula for:", formula:"Carbon tetrachloride", answer:"CCl₄", options:["CCl₄","C₄Cl","CCl","CCl₃"], explain:"Carbon (1) + tetra = 4 + chloride. CCl₄."},
+    {question:"Write the formula for:", formula:"Dinitrogen monoxide", answer:"N₂O", options:["N₂O","NO₂","N₂O₂","NO"], explain:"Di=2 nitrogen, mono=1 oxide. N₂O."},
+    {question:"Write the formula for:", formula:"Sulfuric acid", answer:"H₂SO₄", options:["H₂SO₄","HSO₄","H₂SO₃","HSOO₄"], explain:"Sulfuric acid is from sulfate (SO₄²⁻, charge −2). Need 2H⁺ to balance. H₂SO₄."},
+    {question:"Write the formula for:", formula:"Hydrochloric acid", answer:"HCl(aq)", options:["HCl(aq)","H₂Cl","HCl₂","HClO₃"], explain:"Binary acid: H + Cl. Cl is −1, so 1 H balances it. HCl(aq)."},
+    {question:"Write the formula for:", formula:"Calcium hydroxide", answer:"Ca(OH)₂", options:["Ca(OH)₂","CaOH","Ca₂OH","Ca(OH)"], explain:"Ca²⁺ + OH⁻ (−1). Need 2 OH to balance Ca's 2+. Ca(OH)₂."},
+    {question:"Write the formula for:", formula:"Lithium nitrate", answer:"LiNO₃", options:["LiNO₃","Li(NO₃)₂","Li₂NO₃","LiNO₂"], explain:"Li⁺ (+1) + NO₃⁻ (−1). Equal charges → LiNO₃."},
+    {question:"Write the formula for:", formula:"Barium sulfate", answer:"BaSO₄", options:["BaSO₄","Ba(SO₄)₂","Ba₂SO₄","BaSO₃"], explain:"Ba²⁺ + SO₄²⁻. Both charge 2 → criss-cross Ba₂(SO₄)₂ → simplify → BaSO₄."},
+    {question:"Write the formula for:", formula:"Lead(IV) chloride", answer:"PbCl₄", options:["PbCl₄","PbCl₂","Pb₄Cl","PbCl"], explain:"Pb⁴⁺ (+4) + Cl⁻ (−1). Criss-cross: Pb₁Cl₄ = PbCl₄."},
+    {question:"Write the formula for:", formula:"Aluminum hydroxide", answer:"Al(OH)₃", options:["Al(OH)₃","Al(OH)₂","AlOH","Al₃(OH)"], explain:"Al³⁺ + OH⁻ (−1). Need 3 OH to balance Al's 3+ charge. Al(OH)₃."},
+    {question:"Write the formula for:", formula:"Iron(II) sulfide", answer:"FeS", options:["FeS","FeS₂","Fe₂S","Fe₂S₂"], explain:"Fe²⁺ + S²⁻. Both charge 2 → criss-cross Fe₂S₂ → simplify → FeS."},
+    {question:"Write the formula for:", formula:"Magnesium nitrate", answer:"Mg(NO₃)₂", options:["Mg(NO₃)₂","MgNO₃","Mg₂NO₃","Mg(NO₃)"], explain:"Mg²⁺ + NO₃⁻ (−1). Need 2 nitrate to balance Mg's 2+. Mg(NO₃)₂."},
+    {question:"Write the formula for:", formula:"Nitrogen trifluoride", answer:"NF₃", options:["NF₃","N₃F","NF","N₃F₃"], explain:"Molecular compound: Nitrogen (1, no prefix) + tri (3) fluoride = NF₃."},
+    {question:"Write the formula for:", formula:"Nitrous acid", answer:"HNO₂", options:["HNO₂","HNO₃","H₂NO₂","HN₂O₃"], explain:"Nitrous acid comes from nitrite (NO₂⁻). H⁺ + NO₂⁻ = HNO₂."},
+    {question:"Write the formula for:", formula:"Ammonium phosphate", answer:"(NH₄)₃PO₄", options:["(NH₄)₃PO₄","NH₄PO₄","(NH₄)₂PO₄","(NH₄)PO₄"], explain:"NH₄⁺ (+1) + PO₄³⁻ (−3). Criss-cross: (NH₄)₃PO₄. Charge check: 3(+1) + 1(−3) = 0 ✓"},
+    {question:"The formula for an ionic compound must always have:", formula:"", answer:"A total charge of zero (positive charges = negative charges)", options:["A total charge of zero (positive charges = negative charges)","More positive ions than negative","A subscript after every element","At least one polyatomic ion"], explain:"Ionic compounds are neutral overall. The positive charge of the cation MUST exactly cancel the negative charge of the anion."},
+  ]);
+};
+
+// ─── GAME 12: Polyatomic Flashcards ───────
+gameBuilders.flashcards = function() {
+  const cards = [
+    {formula:"NH₄⁺", name:"Ammonium", charge:"+1"},
+    {formula:"OH⁻", name:"Hydroxide", charge:"−1"},
+    {formula:"NO₃⁻", name:"Nitrate", charge:"−1"},
+    {formula:"NO₂⁻", name:"Nitrite", charge:"−1"},
+    {formula:"CO₃²⁻", name:"Carbonate", charge:"−2"},
+    {formula:"HCO₃⁻", name:"Bicarbonate (hydrogen carbonate)", charge:"−1"},
+    {formula:"SO₄²⁻", name:"Sulfate", charge:"−2"},
+    {formula:"SO₃²⁻", name:"Sulfite", charge:"−2"},
+    {formula:"PO₄³⁻", name:"Phosphate", charge:"−3"},
+    {formula:"ClO₄⁻", name:"Perchlorate", charge:"−1"},
+    {formula:"ClO₃⁻", name:"Chlorate", charge:"−1"},
+    {formula:"ClO₂⁻", name:"Chlorite", charge:"−1"},
+    {formula:"ClO⁻", name:"Hypochlorite", charge:"−1"},
+    {formula:"MnO₄⁻", name:"Permanganate", charge:"−1"},
+    {formula:"CrO₄²⁻", name:"Chromate", charge:"−2"},
+    {formula:"C₂H₃O₂⁻", name:"Acetate", charge:"−1"},
+  ];
+  
+  const shuffled = shuffleArr(cards);
+  let idx = 0, flipped = false;
+  
+  const ga = document.getElementById('game-area');
+  
+  function renderCard() {
+    if (idx >= shuffled.length) {
+      ga.innerHTML = `<div class="center" style="padding:40px"><div style="font-size:4rem">🎉</div><h2 style="font-family:'Rajdhani',sans-serif;font-size:2rem">You've seen all ${cards.length} polyatomic ions!</h2><button class="btn btn-cyan" style="margin-top:20px" onclick="launchGame('flashcards')">🔄 Shuffle & Repeat</button></div>`;
+      return;
+    }
+    const c = shuffled[idx];
+    flipped = false;
+    ga.innerHTML = `
+      <div class="game-header">
+        <div class="game-title-main">🃏 Polyatomic Flashcards</div>
+        <div class="score-display">Card ${idx+1}/${shuffled.length}</div>
+      </div>
+      <p style="color:var(--muted);text-align:center;margin-bottom:16px">Click the card to reveal the name!</p>
+      <div class="flashcard-container" onclick="flipCard()">
+        <div class="flashcard" id="fc">
+          <div class="flashcard-face flashcard-front">
+            <p style="color:var(--muted);font-size:0.85rem">Formula — what is this ion?</p>
+            <div class="flashcard-formula">${c.formula}</div>
+            <p style="color:var(--muted);font-size:0.8rem">Click to flip</p>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <div class="flashcard-name">${c.name}</div>
+            <div class="flashcard-charge">Charge: ${c.charge}</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:20px">
+        <button class="btn btn-ghost" onclick="prevCard()">← Prev</button>
+        <button class="btn btn-cyan" onclick="nextCard()">Next →</button>
+      </div>
+      <div style="margin-top:24px;padding:16px;background:var(--card2);border-radius:10px;font-size:0.88rem">
+        <strong class="text-cyan">Memory hint for oxyanions:</strong>
+        <span style="color:var(--orange)">per___ate</span> (+1 O) → 
+        <span class="text-cyan">___ate</span> (root) → 
+        <span class="text-purple">___ite</span> (−1 O) → 
+        <span class="text-green">hypo___ite</span> (−2 O)
+      </div>`;
+    
+    window.flipCard = () => {
+      flipped = !flipped;
+      document.getElementById('fc').classList.toggle('flipped', flipped);
+    };
+    window.nextCard = () => { idx++; renderCard(); };
+    window.prevCard = () => { if(idx>0){idx--;renderCard();} };
+  }
+  renderCard();
+};
+
+// ─── GAME 13: Equation Balancer ───────────
+gameBuilders.balancer = function() {
+  const equations = shuffleArr([
+    {skeleton:"H₂ + Cl₂ → HCl", balanced:"H₂ + Cl₂ → 2HCl", coeffs:[1,1,2], parts:["H₂","+","Cl₂","→","HCl"], sides:[[0,2],[4]], explain:"2H and 2Cl on left. Need 2HCl on right."},
+    {skeleton:"Na + O₂ → Na₂O", balanced:"4Na + O₂ → 2Na₂O", coeffs:[4,1,2], parts:["Na","+","O₂","→","Na₂O"], sides:[[0,2],[4]], explain:"Balance O first: 1 O₂ (2 O). Need 2 Na₂O (2 O, 4 Na). So 4 Na on left."},
+    {skeleton:"Fe + O₂ → Fe₂O₃", balanced:"4Fe + 3O₂ → 2Fe₂O₃", coeffs:[4,3,2], parts:["Fe","+","O₂","→","Fe₂O₃"], sides:[[0,2],[4]], explain:"Balance: 4Fe on left, 3O₂ (6 O), 2Fe₂O₃ (4Fe, 6O). ✓"},
+    {skeleton:"H₂ + O₂ → H₂O", balanced:"2H₂ + O₂ → 2H₂O", coeffs:[2,1,2], parts:["H₂","+","O₂","→","H₂O"], sides:[[0,2],[4]], explain:"2H₂ (4H, 2O via O₂). 2H₂O (4H, 2O). Balanced!"},
+    {skeleton:"Al + HCl → AlCl₃ + H₂", balanced:"2Al + 6HCl → 2AlCl₃ + 3H₂", coeffs:[2,6,2,3], parts:["Al","+","HCl","→","AlCl₃","+","H₂"], sides:[[0,2],[4,6]], explain:"Balance Al first (×2), then Cl (×6 HCl, 2 AlCl₃), then H (6H → 3H₂)."},
+    {skeleton:"Mg + O₂ → MgO", balanced:"2Mg + O₂ → 2MgO", coeffs:[2,1,2], parts:["Mg","+","O₂","→","MgO"], sides:[[0,2],[4]], explain:"O₂ gives 2 O atoms. Need 2 MgO (2O). So 2 Mg on left."},
+    {skeleton:"C + O₂ → CO₂", balanced:"C + O₂ → CO₂", coeffs:[1,1,1], parts:["C","+","O₂","→","CO₂"], sides:[[0,2],[4]], explain:"Already balanced! 1C, 2O on each side."},
+    {skeleton:"N₂ + H₂ → NH₃", balanced:"N₂ + 3H₂ → 2NH₃", coeffs:[1,3,2], parts:["N₂","+","H₂","→","NH₃"], sides:[[0,2],[4]], explain:"2N → 2NH₃. 2NH₃ needs 6H → 3H₂. Balanced!"},
+    {skeleton:"K + H₂O → KOH + H₂", balanced:"2K + 2H₂O → 2KOH + H₂", coeffs:[2,2,2,1], parts:["K","+","H₂O","→","KOH","+","H₂"], sides:[[0,2],[4,6]], explain:"Balance K first (×2). 2 H₂O gives 4H: 2 go to KOH, 2 go to H₂ (= 1 H₂). ✓"},
+    {skeleton:"CH₄ + O₂ → CO₂ + H₂O", balanced:"CH₄ + 2O₂ → CO₂ + 2H₂O", coeffs:[1,2,1,2], parts:["CH₄","+","O₂","→","CO₂","+","H₂O"], sides:[[0,2],[4,6]], explain:"1C → 1CO₂. 4H → 2H₂O. O needed: 2 + 2 = 4 → 2O₂. Balanced!"},
+    {skeleton:"Ca + O₂ → CaO", balanced:"2Ca + O₂ → 2CaO", coeffs:[2,1,2], parts:["Ca","+","O₂","→","CaO"], sides:[[0,2],[4]], explain:"O₂ = 2 O atoms. Need 2 CaO (uses 2 O). So 2 Ca needed on the left."},
+    {skeleton:"NaOH + HCl → NaCl + H₂O", balanced:"NaOH + HCl → NaCl + H₂O", coeffs:[1,1,1,1], parts:["NaOH","+","HCl","→","NaCl","+","H₂O"], sides:[[0,2],[4,6]], explain:"Already balanced! 1 Na, 1 Cl, 2 H, 2 O on each side. This is a neutralization reaction."},
+    {skeleton:"C₂H₆ + O₂ → CO₂ + H₂O", balanced:"2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O", coeffs:[2,7,4,6], parts:["C₂H₆","+","O₂","→","CO₂","+","H₂O"], sides:[[0,2],[4,6]], explain:"2×C₂H₆: 4C → 4CO₂, 12H → 6H₂O. O on right: 8+6=14 → 7O₂. Balanced!"},
+    {skeleton:"P + O₂ → P₂O₅", balanced:"4P + 5O₂ → 2P₂O₅", coeffs:[4,5,2], parts:["P","+","O₂","→","P₂O₅"], sides:[[0,2],[4]], explain:"2 P₂O₅ → 4P on left, 10 O on right → 5O₂ on left. 4P + 5O₂ → 2P₂O₅ ✓"},
+  ]);
+  
+  let idx = 0, sc = 0, tot = 0;
+  
+  function renderBalancer() {
+    if (idx >= equations.length) {
+      const pct = Math.round(sc/tot*100);
+      document.getElementById('game-area').innerHTML = `<div class="center" style="padding:40px"><div style="font-size:5rem">${pct>=80?'⚖️🏆':'📚'}</div><h2 style="font-family:'Rajdhani',sans-serif;font-size:2rem">${pct>=80?'Balanced master!':'Keep practicing!'}</h2><p>Score: ${sc}/${tot} (${pct}%)</p><button class="btn btn-cyan" style="margin-top:20px" onclick="launchGame('balancer')">🔄 Play Again</button></div>`;
+      return;
+    }
+    const eq = equations[idx];
+    gScore = sc; gTotal = tot;
+    const ga = document.getElementById('game-area');
+    
+    // Build coefficient inputs
+    let coeffIdx = 0;
+    let html = '';
+    eq.parts.forEach((part, i) => {
+      if (part === '+') html += `<span class="eq-plus">+</span>`;
+      else if (part === '→') html += `<span class="eq-arrow">→</span>`;
+      else {
+        html += `<span class="eq-part"><input type="number" class="coeff-input" id="coeff-${coeffIdx}" min="1" max="20" placeholder="?" value=""><span class="eq-formula">${part}</span></span>`;
+        coeffIdx++;
+      }
+    });
+    
+    ga.innerHTML = gameHeader() + `
+      <div class="progress-bar"><div class="progress-fill" style="width:${Math.round(idx/equations.length*100)}%"></div></div>
+      <p style="color:var(--muted);font-size:0.85rem;margin-bottom:12px">Equation ${idx+1}/${equations.length} — Enter the coefficients to balance the equation. Use 1 if no coefficient needed.</p>
+      <div class="info-box" style="font-size:0.85rem;margin-bottom:16px">
+        <strong>Remember:</strong> The number of atoms on the LEFT must equal the RIGHT. Only change the big numbers (coefficients) — never change subscripts!
+      </div>
+      <div class="equation-display">${html}</div>
+      <div style="text-align:center;margin:16px 0">
+        <button class="btn btn-cyan" onclick="checkBalancer()">⚖️ Check My Balance</button>
+      </div>
+      <div class="feedback" id="balfb"></div>
+      <div id="balnext" style="display:none;margin-top:12px"><button class="btn btn-cyan" onclick="nextBal()">Next Equation →</button></div>`;
+    
+    window.checkBalancer = () => {
+      const entered = [];
+      let allFilled = true;
+      for (let i = 0; i < eq.coeffs.length; i++) {
+        const val = parseInt(document.getElementById('coeff-'+i).value);
+        if (isNaN(val)) { allFilled = false; break; }
+        entered.push(val);
+      }
+      if (!allFilled) {
+        document.getElementById('balfb').className = 'feedback show wrong-fb';
+        document.getElementById('balfb').textContent = 'Please fill in all coefficient boxes!';
+        return;
+      }
+      tot++; gTotal = tot;
+      const correct = entered.every((v,i) => v === eq.coeffs[i]);
+      if (correct) { sc++; gScore = sc; }
+      document.getElementById('gscore').textContent = sc;
+      document.getElementById('gtotal').textContent = tot;
+      const fb = document.getElementById('balfb');
+      fb.className = 'feedback show ' + (correct ? 'correct-fb' : 'wrong-fb');
+      fb.innerHTML = correct ? `✅ Balanced! ${eq.balanced}` : `❌ Not quite. Correct: <strong>${eq.balanced}</strong>. ${eq.explain}`;
+      document.getElementById('balnext').style.display = 'block';
+    };
+    window.nextBal = () => { idx++; renderBalancer(); };
+  }
+  renderBalancer();
+};
+
+// ─── GAME 14: Reaction Type Classifier ────
+gameBuilders.reactiontype = function() {
+  mcGame([
+    {question:"Classify this reaction:", formula:"2H₂ + O₂ → 2H₂O", answer:"Synthesis", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Two things (H₂ and O₂) combine into ONE product (H₂O). A + B → AB = Synthesis."},
+    {question:"Classify this reaction:", formula:"2H₂O → 2H₂ + O₂", answer:"Decomposition", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"One thing (H₂O) breaks into two simpler things. AB → A + B = Decomposition."},
+    {question:"Classify this reaction:", formula:"Zn + CuSO₄ → ZnSO₄ + Cu", answer:"Single Displacement", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Zn 'kicks out' Cu from CuSO₄. One element displaces another. A + BC → AC + B."},
+    {question:"Classify this reaction:", formula:"AgNO₃ + NaCl → AgCl + NaNO₃", answer:"Double Displacement", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Two ionic compounds swap cations. AB + CD → AD + CB = Double Displacement."},
+    {question:"Classify this reaction:", formula:"HCl + NaOH → NaCl + H₂O", answer:"Neutralization", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Acid + Base → Salt + Water = Neutralization (also a double displacement)."},
+    {question:"Classify this reaction:", formula:"CH₄ + 2O₂ → CO₂ + 2H₂O + energy", answer:"Combustion", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Fuel (CH₄) + O₂ → oxides + energy. This is complete combustion."},
+    {question:"Classify this reaction:", formula:"CaCO₃ → CaO + CO₂", answer:"Decomposition", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"One compound breaks into two simpler ones. AB → A + B = Decomposition."},
+    {question:"Classify this reaction:", formula:"2Mg + O₂ → 2MgO + energy", answer:"Combustion", options:["Synthesis","Decomposition","Single Displacement","Combustion","Neutralization","Double Displacement"], explain:"Mg (elemental fuel) burns in O₂ → oxide. Elemental combustion (also a synthesis)!"},
+    {question:"Classify this reaction:", formula:"Cl₂ + 2KBr → 2KCl + Br₂", answer:"Single Displacement", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Cl₂ (nonmetal) displaces Br from KBr. Nonmetal displaces nonmetal = Single Displacement."},
+    {question:"Classify this reaction:", formula:"H₂SO₄ + 2KOH → K₂SO₄ + 2H₂O", answer:"Neutralization", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Acid (H₂SO₄) + Base (KOH) → Salt + Water = Neutralization."},
+    {question:"Classify this reaction:", formula:"Na₂O + H₂O → 2NaOH", answer:"Synthesis", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Two things combine into one product. A + B → AB = Synthesis."},
+    {question:"Classify this reaction:", formula:"Pb(NO₃)₂ + 2KI → PbI₂ + 2KNO₃", answer:"Double Displacement", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Two ionic compounds swap partners. Notice the precipitate (PbI₂). Double Displacement."},
+    {question:"Classify this reaction:", formula:"C₃H₈ + 5O₂ → 3CO₂ + 4H₂O + energy", answer:"Combustion", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Hydrocarbon + O₂ → CO₂ + H₂O + energy. Complete combustion of propane."},
+    {question:"The general formula A + B → AB represents:", formula:"", answer:"Synthesis", options:["Synthesis","Decomposition","Single Displacement","Double Displacement"], explain:"Two or more reactants combine into ONE product. That's synthesis!"},
+    {question:"The general formula AB → A + B represents:", formula:"", answer:"Decomposition", options:["Synthesis","Decomposition","Single Displacement","Double Displacement"], explain:"One compound breaks apart into simpler substances. That's decomposition!"},
+    {question:"Classify this reaction:", formula:"2H₂O₂ → 2H₂O + O₂", answer:"Decomposition", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"H₂O₂ (hydrogen peroxide) breaks down into water and oxygen. One substance → two. Decomposition."},
+    {question:"Classify this reaction:", formula:"Fe + CuSO₄ → FeSO₄ + Cu", answer:"Single Displacement", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Fe metal kicks out Cu from CuSO₄. A + BC → AC + B. Single Displacement."},
+    {question:"Classify this reaction:", formula:"BaCl₂ + Na₂SO₄ → BaSO₄ + 2NaCl", answer:"Double Displacement", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Ba²⁺ and Na⁺ swap partners. AB + CD → AD + CB. Double Displacement. (BaSO₄ forms as a precipitate.)"},
+    {question:"Classify this reaction:", formula:"SO₃ + H₂O → H₂SO₄", answer:"Synthesis", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Two substances combine into one. A + B → AB. Synthesis!"},
+    {question:"Classify this reaction:", formula:"C₂H₅OH + 3O₂ → 2CO₂ + 3H₂O + energy", answer:"Combustion", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Ethanol (a fuel) + O₂ → CO₂ + H₂O + energy. Complete combustion of ethanol."},
+    {question:"Classify this reaction:", formula:"H₂CO₃ → H₂O + CO₂", answer:"Decomposition", options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"], explain:"Carbonic acid breaks apart. One → two simpler substances. Decomposition."},
+    {question:"In a single displacement reaction, which reactant does the displacing?", formula:"A + BC → AC + B", answer:"The more reactive element (A) displaces the less reactive one (B)", options:["The more reactive element (A) displaces the less reactive one (B)","The less reactive element always displaces","The compound always displaces the element","Any element can displace any other"], explain:"An element can only displace another element from a compound if it's MORE reactive. E.g., Zn displaces Cu because Zn is more reactive."},
+    {question:"What is always produced in a neutralization reaction?", formula:"Acid + Base → ?", answer:"Salt + Water", options:["Salt + Water","CO₂ + Water","Salt + CO₂","Water only"], explain:"Neutralization: Acid + Base → Salt + Water. The H⁺ from acid + OH⁻ from base → H₂O. The remaining ions form a salt."},
+    {question:"Which reaction type describes what happens when you charge your phone (electrical energy causes a reaction)?", formula:"", answer:"Decomposition (electrolysis)", options:["Decomposition (electrolysis)","Synthesis","Single Displacement","Combustion"], explain:"Using electricity to break down a compound is called electrolysis — a type of decomposition. 2H₂O → 2H₂ + O₂ with electricity."},
+  ]);
+};
+
+// ─── GAME 15: Combustion Challenge ────────
+gameBuilders.combustion = function() {
+  mcGame([
+    {question:"What are the products of COMPLETE combustion of a hydrocarbon?", formula:"", answer:"CO₂ + H₂O + energy", options:["CO₂ + H₂O + energy","CO + C + energy","CO₂ + CO + energy","H₂O + C + energy"], explain:"Complete combustion (enough O₂): hydrocarbon → CO₂ + H₂O + energy. Clean!"},
+    {question:"What are the products of INCOMPLETE combustion?", formula:"", answer:"CO₂ + H₂O + CO + C + energy", options:["CO₂ + H₂O + CO + C + energy","CO₂ + H₂O + energy","CO + energy","Just energy"], explain:"Incomplete combustion (not enough O₂): also produces toxic CO and soot (C)."},
+    {question:"Balance this complete combustion:", formula:"CH₄ + O₂ → CO₂ + H₂O", answer:"CH₄ + 2O₂ → CO₂ + 2H₂O", options:["CH₄ + 2O₂ → CO₂ + 2H₂O","CH₄ + O₂ → CO₂ + H₂O","2CH₄ + O₂ → CO₂ + 2H₂O","CH₄ + 3O₂ → CO₂ + 2H₂O"], explain:"CH₄: 1C → 1CO₂. 4H → 2H₂O (needs 2O). Total O needed = 2+2=4 → 2O₂."},
+    {question:"Balance this complete combustion:", formula:"C₃H₈ + O₂ → CO₂ + H₂O", answer:"C₃H₈ + 5O₂ → 3CO₂ + 4H₂O", options:["C₃H₈ + 5O₂ → 3CO₂ + 4H₂O","C₃H₈ + 3O₂ → 3CO₂ + 4H₂O","C₃H₈ + 5O₂ → CO₂ + H₂O","3C₃H₈ + O₂ → 3CO₂ + 4H₂O"], explain:"3C → 3CO₂. 8H → 4H₂O. O needed: 6+4=10 → 5O₂."},
+    {question:"Why is carbon monoxide (CO) dangerous in incomplete combustion?", formula:"", answer:"It is a toxic, colourless, odourless gas that is poisonous", options:["It is a toxic, colourless, odourless gas that is poisonous","It smells bad and can be easily detected","It only affects plants","It is just soot"], explain:"CO is very dangerous because you can't smell or see it, and it prevents blood from carrying oxygen."},
+    {question:"What does combustion ALWAYS require as a reactant?", formula:"", answer:"Oxygen (O₂)", options:["Oxygen (O₂)","Water (H₂O)","Carbon (C)","Nitrogen (N₂)"], explain:"All combustion reactions: fuel + O₂ → products + energy. No O₂ = no combustion!"},
+    {question:"Elemental combustion of magnesium produces:", formula:"2Mg + O₂ → ?", answer:"2MgO + energy", options:["2MgO + energy","Mg₂O + energy","2MgO₂ + energy","Mg + O₂"], explain:"Mg combusts: 2Mg + O₂ → 2MgO + energy. This is also a synthesis reaction!"},
+    {question:"What type of reaction is combustion also similar to when elements burn?", formula:"", answer:"Synthesis (A + B → AB)", options:["Synthesis (A + B → AB)","Decomposition (AB → A + B)","Single displacement","Double displacement"], explain:"Elemental combustion: Element + O₂ → Oxide. This follows the synthesis pattern A + B → AB."},
+    {question:"Hydrocarbons are compounds made entirely of:", formula:"", answer:"Carbon and Hydrogen only", options:["Carbon and Hydrogen only","Carbon, Hydrogen, and Oxygen","Carbon only","Hydrogen only"], explain:"Hydrocarbons = ONLY carbon (C) and hydrogen (H). Examples: CH₄, C₂H₆, C₃H₈."},
+    {question:"What is the product when hydrogen gas (H₂) combusts?", formula:"2H₂ + O₂ → ?", answer:"2H₂O + energy", options:["2H₂O + energy","H₂O₂ + energy","HO + energy","H + OH + energy"], explain:"2H₂ + O₂ → 2H₂O + energy. Hydrogen combustion produces only water — very clean!"},
+    {question:"Balance this complete combustion:", formula:"C₂H₆ + O₂ → CO₂ + H₂O", answer:"2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O", options:["2C₂H₆ + 7O₂ → 4CO₂ + 6H₂O","C₂H₆ + 4O₂ → 2CO₂ + 3H₂O","C₂H₆ + 3O₂ → 2CO₂ + 3H₂O","2C₂H₆ + 6O₂ → 4CO₂ + 6H₂O"], explain:"2×C₂H₆: 4C → 4CO₂, 12H → 6H₂O. O on right: 8+6=14 → 7O₂."},
+    {question:"Natural gas (methane, CH₄) burning on your stove is what type of combustion?", formula:"", answer:"Complete combustion (when enough oxygen is present)", options:["Complete combustion (when enough oxygen is present)","Incomplete combustion","Decomposition","Synthesis only"], explain:"Natural gas stoves burn with enough air → complete combustion → CO₂ + H₂O. Safe!"},
+    {question:"Soot (black carbon particles) is produced during:", formula:"", answer:"Incomplete combustion", options:["Incomplete combustion","Complete combustion","Synthesis","Decomposition"], explain:"Soot = unburned carbon (C). This only happens in incomplete combustion when there's not enough oxygen to fully react all the carbon."},
+    {question:"What colour is a flame in complete combustion vs incomplete combustion?", formula:"", answer:"Blue/hot in complete; orange/yellow/smoky in incomplete", options:["Blue/hot in complete; orange/yellow/smoky in incomplete","Red in complete; blue in incomplete","White in both","Same colour, just brightness differs"], explain:"Complete combustion burns clean and blue (like a gas stove). Incomplete combustion produces yellow/orange flames and smoke (like a candle or campfire)."},
+    {question:"A car engine sometimes produces CO from the exhaust. This is because:", formula:"", answer:"Incomplete combustion of gasoline in the engine", options:["Incomplete combustion of gasoline in the engine","Complete combustion always produces CO","CO is a reactant in combustion","The oxygen in the air reacts with the engine"], explain:"Car engines can't always combust gasoline perfectly → incomplete combustion → some CO produced alongside CO₂. Catalytic converters help convert CO to CO₂."},
+    {question:"The word equation for complete combustion of a hydrocarbon is:", formula:"", answer:"Hydrocarbon + Oxygen → Carbon dioxide + Water + Energy", options:["Hydrocarbon + Oxygen → Carbon dioxide + Water + Energy","Hydrocarbon + Oxygen → Carbon monoxide + Water","Hydrocarbon → Carbon + Water + Energy","Carbon + Oxygen → Carbon dioxide"], explain:"Complete combustion: fuel (hydrocarbon) + O₂ → CO₂ + H₂O + energy. Remember: COMPLETE = no CO or C produced."},
+    {question:"What is propane's chemical formula?", formula:"", answer:"C₃H₈", options:["C₃H₈","C₂H₄","C₄H₁₀","CH₄"], explain:"Propane is C₃H₈ — 3 carbon atoms with 8 hydrogen atoms. It's used in barbecue grills and camping stoves."},
+  ]);
+};
+
+// ─── GAME 16: pH Scale Placement ──────────
+gameBuilders.phscale = function() {
+  mcGame([
+    {question:"What pH does pure water have?", formula:"", answer:"7 (Neutral)", options:["7 (Neutral)","0 (Most acidic)","14 (Most basic)","5 (Slightly acidic)"], explain:"Pure water is NEUTRAL — equal H⁺ and OH⁻ ions. pH = 7."},
+    {question:"What is the pH range of ACIDS?", formula:"", answer:"0 to less than 7", options:["0 to less than 7","Greater than 7 to 14","Exactly 7","0 to 14"], explain:"Acids have pH below 7. The closer to 0, the stronger the acid."},
+    {question:"What is the pH range of BASES?", formula:"", answer:"Greater than 7 to 14", options:["Greater than 7 to 14","0 to less than 7","Exactly 7","5 to 14"], explain:"Bases have pH above 7. The closer to 14, the stronger the base."},
+    {question:"Lemon juice has pH ≈ 2. Vinegar has pH ≈ 3. Which is MORE acidic?", formula:"", answer:"Lemon juice (pH 2)", options:["Lemon juice (pH 2)","Vinegar (pH 3)","They're the same","Can't tell without more info"], explain:"Lower pH = more acidic. pH 2 is 10× MORE acidic than pH 3 (log scale!)."},
+    {question:"pH changes by 1 unit. How does the acidity change?", formula:"", answer:"10 times more acidic or basic", options:["10 times more acidic or basic","2 times more acidic or basic","100 times","It doesn't change much"], explain:"The pH scale is LOGARITHMIC. Each 1-unit change = 10× difference in H⁺ concentration."},
+    {question:"Blood has a pH of 7.4. If it drops to 7.3, what happens?", formula:"", answer:"Blood becomes 10× more acidic — can be life-threatening", options:["Blood becomes 10× more acidic — can be life-threatening","Nothing significant changes","It becomes basic","Blood becomes 10× less acidic"], explain:"Blood pH must stay near 7.41. Even 0.1 change is serious — log scale means 10× change!"},
+    {question:"Red litmus paper turns BLUE when:", formula:"", answer:"Exposed to a base (pH > 7)", options:["Exposed to a base (pH > 7)","Exposed to an acid (pH < 7)","Exposed to neutral water","It's heated"], explain:"Blue = Base. Red litmus → Blue in a Base. Blue litmus → Red in an Acid."},
+    {question:"Phenolphthalein is colourless in acid and turns what colour in a base?", formula:"", answer:"Pink", options:["Pink","Yellow","Blue","Red"], explain:"Phenolphthalein turns pink in basic solutions (around pH 8+)."},
+    {question:"Which of these has the LOWEST pH?", formula:"", answer:"Battery acid (pH ~0)", options:["Battery acid (pH ~0)","Lemon juice (pH ~2)","Coffee (pH ~5)","Blood (pH ~7.4)"], explain:"Battery acid is the strongest acid in the list with pH near 0."},
+    {question:"Antacids work because:", formula:"", answer:"They are basic and neutralize stomach acid (HCl)", options:["They are basic and neutralize stomach acid (HCl)","They are acidic and react with the stomach","They absorb acid without reacting","They prevent the stomach from making acid"], explain:"Antacids contain bases like Mg(OH)₂. Acid + Base → Salt + Water = Neutralization."},
+    {question:"Acid rain is harmful because:", formula:"", answer:"It lowers the pH of water bodies and soil, disrupting ecosystems", options:["It lowers the pH of water bodies and soil, disrupting ecosystems","It raises pH making things too basic","It only affects buildings, not nature","It makes water taste salty"], explain:"Acid rain (pH 5 or below) disrupts aquatic ecosystems, damages soil, and corrodes structures."},
+    {question:"What ion makes something an ACID?", formula:"", answer:"Excess H⁺ ions", options:["Excess H⁺ ions","Excess OH⁻ ions","Excess Na⁺ ions","Excess Cl⁻ ions"], explain:"Acids produce H⁺ (hydrogen ions) in solution. More H⁺ = lower pH = stronger acid."},
+    {question:"What ion makes something a BASE?", formula:"", answer:"Excess OH⁻ ions", options:["Excess OH⁻ ions","Excess H⁺ ions","Excess Na⁺ ions","Excess K⁺ ions"], explain:"Bases produce OH⁻ (hydroxide ions) in solution. More OH⁻ = higher pH = stronger base."},
+    {question:"Skin has a natural pH of about 5.5. Using soap (a base, pH ~9) on skin:", formula:"", answer:"Raises skin pH and may allow more bacterial growth", options:["Raises skin pH and may allow more bacterial growth","Lowers skin pH making it more acidic","Has no effect on skin pH","Permanently changes skin chemistry"], explain:"Skin's mild acidity (pH 5.5) controls bacteria. Soap raises pH, disrupting this natural defence."},
+    {question:"What happens when an acid and a base react together?", formula:"", answer:"They neutralize each other to form salt + water", options:["They neutralize each other to form salt + water","They both become more acidic","They both become more basic","They explode"], explain:"Acid + Base → Salt + Water + (sometimes CO₂). This is called neutralization. The H⁺ and OH⁻ ions combine to make water."},
+    {question:"Stomach acid (HCl) has a pH of about 2. What does this tell you?", formula:"", answer:"It is a very strong acid — highly concentrated H⁺ ions", options:["It is a very strong acid — highly concentrated H⁺ ions","It is slightly acidic","It is basic","It is neutral"], explain:"pH 2 is very acidic (close to 0). Stomach acid needs to be very strong to break down food and kill bacteria."},
+    {question:"A solution with pH 11 is:", formula:"", answer:"A strong base", options:["A strong base","A weak base","Neutral","A weak acid"], explain:"pH 11 is well above 7 → it's a base. The higher above 7, the stronger the base."},
+    {question:"Universal indicator paper changes to different colours to show:", formula:"", answer:"The pH level of the solution", options:["The pH level of the solution","Whether the solution is hot or cold","The concentration of the solution","The chemical formula of the substance"], explain:"Universal indicator is a mix of dyes that shows different colours at different pH levels — you compare the colour to a chart."},
+    {question:"Which of these is an example of a BASE used in everyday life?", formula:"", answer:"Baking soda (NaHCO₃, pH ~8.3)", options:["Baking soda (NaHCO₃, pH ~8.3)","Vinegar (pH ~3)","Lemon juice (pH ~2)","Coffee (pH ~5)"], explain:"Baking soda is a mild base with pH ~8.3. It's used in baking, cleaning, and even as an antacid."},
+    {question:"Bromothymol blue (BTB) indicator is yellow in acid, green in neutral, and what colour in base?", formula:"", answer:"Blue", options:["Blue","Purple","Red","Colourless"], explain:"BTB: Yellow (acid) → Green (neutral) → Blue (base). It's commonly used in labs to test for CO₂ in water."},
+    {question:"pH 3 is how many times more acidic than pH 5?", formula:"", answer:"100 times more acidic", options:["100 times more acidic","2 times more acidic","10 times more acidic","1000 times more acidic"], explain:"The pH scale is logarithmic. Each 1-unit difference = 10× change. pH 3 vs pH 5 is 2 units apart → 10 × 10 = 100 times more acidic."},
+    {question:"What would happen if you added an acid to a base in equal amounts?", formula:"", answer:"The pH would move toward 7 (neutralization)", options:["The pH would move toward 7 (neutralization)","The pH would increase","The solution would become more acidic","Nothing would happen"], explain:"Acid + Base neutralize each other. If equal amounts are mixed, the result approaches neutral pH 7. This is why antacids work!"},
+    {question:"Ocean water is slightly basic (pH ~8.1). If CO₂ increases in the atmosphere, it dissolves in oceans and:", formula:"", answer:"Lowers ocean pH (ocean acidification) — harming coral and marine life", options:["Lowers ocean pH (ocean acidification) — harming coral and marine life","Raises ocean pH making it more basic","Has no effect on ocean pH","Makes the ocean neutral"], explain:"CO₂ + H₂O → H₂CO₃ (carbonic acid). More CO₂ → more acid → lower ocean pH. This is ocean acidification — a real environmental concern."},
+  ]);
+};
+
+// ─── GAME 17: Big Final Quiz ───────────────
+gameBuilders.bigquiz = function() {
+  gName = 'Final Boss Quiz';
+  const allQs = [
+    {question:"What is a chemical change?",formula:"",answer:"A change that forms a new substance",options:["A change that forms a new substance","A change in shape or state only","Any change involving heat","A reversible physical change"],explain:"Chemical changes create NEW substances. Physical changes don't."},
+    {question:"Name the compound:",formula:"MgCl₂",answer:"Magnesium chloride",options:["Magnesium chloride","Magnesium dichloride","Magnesium(II) chloride","Magnesia chloride"],explain:"Mg (metal, not multivalent) + Cl → chloride. Magnesium chloride."},
+    {question:"Name the compound:",formula:"Fe₂O₃",answer:"Iron(III) oxide",options:["Iron(III) oxide","Iron(II) oxide","Diiron trioxide","Iron trioxide"],explain:"O has −2 charge. 3 O = −6. 2 Fe must = +6, so Fe = +3. Iron(III) oxide."},
+    {question:"Name the molecular compound:",formula:"N₂O₅",answer:"Dinitrogen pentoxide",options:["Dinitrogen pentoxide","Nitrogen(V) oxide","Dinitrogen oxide","Nitrogen pentoxide"],explain:"N₂ = di, O₅ = penta. Dinitrogen pentoxide."},
+    {question:"Name the acid:",formula:"HNO₃",answer:"Nitric acid",options:["Nitric acid","Nitrous acid","Hydronitic acid","Nitrogen acid"],explain:"Based on nitrate (NO₃⁻, -ate ion). -ate → -ic acid = nitric acid."},
+    {question:"What type of reaction is this?",formula:"2Na + Cl₂ → 2NaCl",answer:"Synthesis",options:["Synthesis","Decomposition","Single Displacement","Combustion"],explain:"Two things combine into one. A + B → AB = Synthesis."},
+    {question:"What type of reaction is this?",formula:"HCl + KOH → KCl + H₂O",answer:"Neutralization",options:["Neutralization","Double Displacement","Synthesis","Single Displacement"],explain:"Acid + Base → Salt + Water = Neutralization."},
+    {question:"What is the pH of a neutral solution?",formula:"",answer:"7",options:["7","0","14","4"],explain:"pH 7 = neutral. Pure water has pH 7."},
+    {question:"Which ion makes a solution acidic?",formula:"",answer:"H⁺",options:["H⁺","OH⁻","Na⁺","Cl⁻"],explain:"Acids produce excess H⁺ ions in solution."},
+    {question:"What is the charge of the sulfate ion?",formula:"SO₄",answer:"2−",options:["2−","1−","3−","2+"],explain:"Sulfate (SO₄²⁻) has a charge of 2−."},
+    {question:"What does the Octet Rule state?",formula:"",answer:"Atoms want 8 valence electrons to be stable",options:["Atoms want 8 valence electrons to be stable","Atoms have 8 protons","Atoms can only form 8 bonds","Electrons orbit in groups of 8"],explain:"The octet rule: atoms react to achieve 8 electrons in their outer shell."},
+    {question:"How many neutrons in an atom of carbon-12?",formula:"C: atomic#=6, mass#=12",answer:"6",options:["6","12","8","2"],explain:"Neutrons = Mass # − Atomic # = 12 − 6 = 6."},
+    {question:"Write the formula:",formula:"Ammonium phosphate",answer:"(NH₄)₃PO₄",options:["(NH₄)₃PO₄","NH₄PO₄","(NH₄)₂PO₄","NH₄(PO₄)₃"],explain:"NH₄⁺ (+1) + PO₄³⁻ (−3). Criss-cross: (NH₄)₃PO₄."},
+    {question:"Name this base:",formula:"Al(OH)₃",answer:"Aluminum hydroxide",options:["Aluminum hydroxide","Aluminum(III) hydroxide","Trialuminum hydroxide","Aluminum hydrox"],explain:"Al³⁺ + OH⁻ (polyatomic). Al is NOT multivalent in this context — aluminum hydroxide."},
+    {question:"What are the products of complete combustion of C₂H₆?",formula:"C₂H₆ + O₂ → ?",answer:"CO₂ + H₂O + energy",options:["CO₂ + H₂O + energy","CO + C + H₂O + energy","CO₂ + H₂ + energy","C + H₂O + energy"],explain:"Complete combustion of any hydrocarbon: → CO₂ + H₂O + energy."},
+    {question:"What element is ALWAYS a reactant in combustion?",formula:"",answer:"Oxygen (O₂)",options:["Oxygen (O₂)","Carbon (C)","Hydrogen (H₂)","Nitrogen (N₂)"],explain:"Combustion always requires oxygen as a reactant."},
+    {question:"Elements in the same GROUP share:",formula:"",answer:"The same number of valence electrons",options:["The same number of valence electrons","The same mass number","The same number of neutrons","The same period"],explain:"Same group = same number of valence electrons → similar chemical properties."},
+    {question:"What is the formula for Lead(IV) oxide?",formula:"Pb⁴⁺ + O²⁻",answer:"PbO₂",options:["PbO₂","Pb₂O","PbO","Pb₂O₄"],explain:"Pb⁴⁺ + O²⁻. Criss-cross: Pb₂O₄ → simplify to PbO₂."},
+    {question:"Which indicator turns PINK in a base?",formula:"",answer:"Phenolphthalein",options:["Phenolphthalein","Bromothymol Blue","Red litmus","Blue litmus"],explain:"Phenolphthalein is colourless in acid and turns pink in base at around pH 8."},
+    {question:"What is the electron configuration of phosphorus?",formula:"P: atomic # = 15",answer:"2, 8, 5",options:["2, 8, 5","2, 5, 8","3, 7, 5","2, 8, 8"],explain:"15 electrons: 2 in shell 1, 8 in shell 2, 5 in shell 3. Valence = 5."},
+    // --- Atoms & Periodic Table ---
+    {question:"How many neutrons are in chlorine-35?",formula:"Cl: atomic # = 17, mass # = 35",answer:"18",options:["18","17","35","52"],explain:"Neutrons = mass# − atomic# = 35 − 17 = 18."},
+    {question:"What is a neutral atom?",formula:"",answer:"An atom with equal numbers of protons and electrons",options:["An atom with equal numbers of protons and electrons","An atom with no neutrons","An atom with no protons","An atom with equal protons and neutrons"],explain:"Neutral = no overall charge. This happens when #protons = #electrons."},
+    {question:"Which element has electron configuration 2, 8, 2?",formula:"",answer:"Magnesium (Mg)",options:["Magnesium (Mg)","Calcium (Ca)","Neon (Ne)","Beryllium (Be)"],explain:"2+8+2 = 12 electrons = atomic# 12 = Magnesium. It has 2 valence electrons (Group 2)."},
+    {question:"What is the electron configuration of argon?",formula:"Ar: atomic # = 18",answer:"2, 8, 8",options:["2, 8, 8","2, 8, 7","2, 6, 8","3, 8, 7"],explain:"18 electrons: 2+8+8. Argon has a FULL outer shell — it's a noble gas and very stable."},
+    {question:"Going down Group 1, reactivity of alkali metals:",formula:"",answer:"Increases — more reactive going down",options:["Increases — more reactive going down","Decreases","Stays the same","Alternates"],explain:"Further down = more electron shells = outer electron farther from nucleus = lost more easily = more reactive."},
+    // --- Bonding ---
+    {question:"How does an ionic bond form?",formula:"",answer:"A metal transfers electrons to a non-metal",options:["A metal transfers electrons to a non-metal","Two non-metals share electrons","Two metals bond together","A proton is shared"],explain:"Ionic = TRANSFER. Metal loses electrons (becomes cation), non-metal gains them (becomes anion). Opposites attract!"},
+    {question:"What type of bond does H₂O have?",formula:"",answer:"Covalent/Molecular (O and H are both non-metals)",options:["Covalent/Molecular (O and H are both non-metals)","Ionic","Metallic","Neither"],explain:"H and O are both non-metals → they SHARE electrons → covalent bond."},
+    // --- Naming ---
+    {question:"Name the compound: CuSO₄",formula:"",answer:"Copper(II) sulfate",options:["Copper(II) sulfate","Copper(I) sulfate","Copper sulfate","Cupric sulfate"],explain:"SO₄²⁻ is −2. One Cu balances it → Cu²⁺ → Copper(II) sulfate."},
+    {question:"Name the compound: PCl₃",formula:"",answer:"Phosphorus trichloride",options:["Phosphorus trichloride","Phosphorus(III) chloride","Triphosphorus chloride","Phosphorus chloride"],explain:"P and Cl are both non-metals → use prefixes. P=1 (no mono), Cl₃=tri. Phosphorus trichloride."},
+    {question:"What is the formula for potassium permanganate?",formula:"K⁺ + MnO₄⁻",answer:"KMnO₄",options:["KMnO₄","K₂MnO₄","KMnO₂","K₂MnO₂"],explain:"K⁺ (+1) + MnO₄⁻ (−1). Equal charges → KMnO₄."},
+    {question:"What is the formula for calcium phosphate?",formula:"Ca²⁺ + PO₄³⁻",answer:"Ca₃(PO₄)₂",options:["Ca₃(PO₄)₂","CaPO₄","Ca₂(PO₄)₃","Ca(PO₄)₂"],explain:"Criss-cross Ca(2) and PO₄(3) → Ca₃(PO₄)₂. Check: 3(+2)+2(−3) = 6−6 = 0 ✓"},
+    // --- Reactions ---
+    {question:"What type of reaction: 2Al + 3CuCl₂ → 2AlCl₃ + 3Cu",formula:"",answer:"Single Displacement",options:["Synthesis","Decomposition","Single Displacement","Double Displacement","Neutralization","Combustion"],explain:"Al kicks out Cu from CuCl₂. A + BC → AC + B. Single Displacement. (Al is more reactive than Cu.)"},
+    {question:"What type of reaction: CaO + H₂O → Ca(OH)₂",formula:"",answer:"Synthesis",options:["Synthesis","Decomposition","Single Displacement","Double Displacement"],explain:"Two reactants combine into one product. A + B → AB. Synthesis."},
+    {question:"Balance this reaction: Al + O₂ → Al₂O₃",formula:"",answer:"4Al + 3O₂ → 2Al₂O₃",options:["4Al + 3O₂ → 2Al₂O₃","2Al + 3O₂ → Al₂O₃","Al + O₂ → Al₂O₃","2Al + O₂ → 2Al₂O₃"],explain:"2 Al₂O₃ needs 4Al and 6O → 3O₂. Balanced: 4Al + 3O₂ → 2Al₂O₃. Check: 4Al each side, 6O each side ✓"},
+    // --- Combustion ---
+    {question:"Complete combustion always produces which two compounds?",formula:"",answer:"CO₂ and H₂O",options:["CO₂ and H₂O","CO and H₂O","CO₂ and CO","C and H₂O"],explain:"Complete combustion (enough O₂): hydrocarbon → CO₂ + H₂O + energy. Always these two!"},
+    {question:"Name one real-world danger of incomplete combustion.",formula:"",answer:"Carbon monoxide (CO) poisoning — odourless and deadly",options:["Carbon monoxide (CO) poisoning — odourless and deadly","Overheating","Making too much water","Producing too much CO₂"],explain:"CO from incomplete combustion (e.g., faulty furnaces) can kill because you can't detect it and it blocks oxygen in your blood."},
+    // --- pH ---
+    {question:"A solution has pH 3. What ion is in excess?",formula:"",answer:"H⁺ (hydrogen ions)",options:["H⁺ (hydrogen ions)","OH⁻ (hydroxide ions)","Na⁺ ions","Cl⁻ ions"],explain:"pH below 7 = acid = excess H⁺ ions."},
+    {question:"An antacid tablet has pH ~9. What does this mean?",formula:"",answer:"It is a mild base that can neutralize stomach acid",options:["It is a mild base that can neutralize stomach acid","It is a strong acid","It is neutral","It has no effect on acids"],explain:"pH 9 > 7 → basic. Antacids are bases that react with stomach acid (HCl) to neutralize it and relieve heartburn."},
+    {question:"Which indicator is colourless in acid and pink in base?",formula:"",answer:"Phenolphthalein",options:["Phenolphthalein","Litmus","Bromothymol blue","Universal indicator"],explain:"Phenolphthalein: colourless in acid, pink/magenta in base. Commonly used in titration experiments."},
+    // --- Physical/Chemical Changes ---
+    {question:"What is a sign that a chemical reaction occurred?",formula:"",answer:"Any of: gas produced, colour change, temperature change, precipitate formed",options:["Any of: gas produced, colour change, temperature change, precipitate formed","Only if there is a flame","Only if it involves heat","Only solids turning into liquids"],explain:"Evidence of chemical change includes: bubbling/gas, colour change, heat/light produced, precipitate, odour. Physical changes don't produce new substances."},
+    {question:"Rusting of iron is what type of change?",formula:"Fe + O₂ → Fe₂O₃",answer:"Chemical change",options:["Chemical change","Physical change","Both","Neither"],explain:"Rust (Fe₂O₃) is a completely new substance. Iron + oxygen → iron oxide. Chemical change!"},
+  ];
+  mcGame(shuffleArr(allQs));
+};
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
+// Make launchGame globally available from page buttons
+window.launchGame = launchGame;
+
+</script>
+</body>
+</html>
